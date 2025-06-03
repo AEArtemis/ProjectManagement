@@ -10,11 +10,13 @@ import {
   Calendar,
   ChartColumnBig,
   UsersRound,
-  LifeBuoy
+  LifeBuoy,
+  BriefcaseBusiness,
+  Tickets,
+  User
 } from "lucide-react";
 import logo from "./../assets/images/PlanoraLogo.png";
 import icon from "./../assets/images/PlanoraIcon.png";
-import avatar from "./../assets/images/Avatar.jpg"; // Add a default user avatar
 import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
@@ -49,9 +51,13 @@ const Navbar = () => {
   const titles = {
     "/dashboard": "Dashboard - Planora",
     "/tasks": "Tasks - Planora",
+    "/ticket": "Tickets - Planora",
     "/calendar": "Calendar - Planora",
+    "/projects": "Projects - Planora",
     "/analytics": "Analytics - Planora",
     "/team": "Team - Planora",
+    "/profile": "Profile - Planora",
+    "/help": "Help - Planora",
     "/settings": "Settings - Planora",
     "/": "Home - Planora",
   };
@@ -109,13 +115,18 @@ const Navbar = () => {
         )}
         <NavItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
         <NavItem to="/tasks" icon={ClipboardList} label="Tasks" />
+        <NavItem to="/tickets" icon={Tickets} label="Tickets" />
         <NavItem to="/calendar" icon={Calendar} label="Calendar" />
+        <NavItem to="/projects" icon={BriefcaseBusiness} label="Projects" />
         <NavItem to="/analytics" icon={ChartColumnBig} label="Analytics" />
         <NavItem to="/team" icon={UsersRound} label="Team" />
+
 
         {!collapsed && (
           <span className="text-sm font-semibold mb-1 pb-3 pl-1 pt-4 opacity-60 text-left block w-full">General</span>
         )}
+        <NavItem to="/profile" icon={User} label="Profile" />
+        <NavItem to="/help" icon={LifeBuoy} label="Help" />
         <NavItem to="/settings" icon={Settings} label="Settings" />
 
       </nav>
@@ -148,7 +159,7 @@ const Navbar = () => {
           {!isMobile && !mobileOpen && (
             <button
               onClick={toggleCollapse}
-              className="mr-2 hover:bg-muted p-2 rounded-md transition-colors duration-200 cursor-pointer"
+              className="mr-2 hover:bg-muted p-0 rounded-md transition-colors duration-200 cursor-pointer"
               aria-label="Toggle sidebar collapse"
             >
               <Menu className={`${iconSize} ${iconHoverClass}`} />
@@ -172,7 +183,7 @@ const Navbar = () => {
           </button>
           <div className="flex items-center space-x-2">
             <img
-              src={avatar}
+              src="/images/Avatar.jpg"
               alt="User Avatar"
               className="w-8 h-8 rounded-full object-cover"
             />

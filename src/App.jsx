@@ -8,9 +8,11 @@ import { Profile } from './components/pages/Profile';
 import { Tasks } from './components/pages/Tasks';
 import { Analytics } from './components/pages/Analytics';
 import { Team } from './components/pages/Team';
-import Layout from './components/Layout';
 import { Calendar } from './components/pages/Calendar';
-
+import { Projects } from './components/pages/Projects';
+import { Tickets } from './components/pages/Tickets';
+import { Help } from './components/pages/Help';
+import Layout from './components/Layout';
 
 function App() {
   return (
@@ -28,7 +30,10 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/tickets" element={<Tickets />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/help" element={<Help />} />
         </Route>
       </Routes>
     </Router>

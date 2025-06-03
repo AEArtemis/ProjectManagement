@@ -13,10 +13,7 @@ export const Dashboard = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
-        <div className="flex gap-2">
-          <Button variant="outline">Import Data</Button>
-          <Button>Add Project</Button>
-        </div>
+
       </div>
 
       {/* Stats Cards */}
@@ -106,6 +103,20 @@ export const Dashboard = () => {
           </CardContent>
         </Card>
 
+        {/* Reminders */}
+        <Card className="md:col-span-3 col-span-1">
+          <CardContent className="p-4">
+            <h2 className="font-semibold text-lg mb-2 text-foreground">
+              Reminders
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Meeting with Aro Company
+            </p>
+            <p className="font-bold text-foreground">02:00pm - 04:00pm</p>
+            <Button className="mt-2 w-full">Start Meeting</Button>
+          </CardContent>
+        </Card>
+
         {/* Time Tracker */}
         <Card className="md:col-span-3 col-span-1">
           <CardContent className="p-4">
@@ -124,21 +135,7 @@ export const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
-
-        {/* Reminders */}
-        <Card className="md:col-span-3 col-span-1">
-          <CardContent className="p-4">
-            <h2 className="font-semibold text-lg mb-2 text-foreground">
-              Reminders
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Meeting with Aro Company
-            </p>
-            <p className="font-bold text-foreground">02:00pm - 04:00pm</p>
-            <Button className="mt-2 w-full">Start Meeting</Button>
-          </CardContent>
-        </Card>
-
+        
         {/* Team Members */}
         <Card className="md:col-span-6 col-span-1">
           <CardContent className="p-4">
