@@ -12,7 +12,9 @@ import { Calendar } from './components/pages/Calendar';
 import { Projects } from './components/pages/Projects';
 import { Tickets } from './components/pages/Tickets';
 import { Help } from './components/pages/Help';
+import { TicketDetail } from './components/pages/TicketDetail';
 import Layout from './components/Layout';
+import { Signup } from './components/pages/Signup';
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        
+        <Route path="/signup" element={<Signup/>} />
         {/* Protected routes with Sidebar */}
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -31,9 +33,11 @@ function App() {
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/tickets" element={<Tickets />} />
+          <Route path="/tickets/ticket-detail" element={<TicketDetail />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/help" element={<Help />} />
+
         </Route>
       </Routes>
     </Router>

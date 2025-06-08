@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Clock } from "lucide-react";
+import { Clock, Pencil } from "lucide-react";
 
 export const Dashboard = () => {
   const [progress, setProgress] = useState(41);
@@ -11,10 +11,28 @@ export const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6 space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
+      <div className="flex flex-wrap justify-between items-center gap-2">
+        <h1 className="text-2xl font-semibold text-foreground">Company Name / Dashboard</h1>
+       {/* <div className="flex gap-2">
+          <Button
+            onClick={() => setShowModal(true)}
+            variant="outline"
+            className="flex items-center gap-2 cursor-pointer"
+          >
+            <Pencil size={16} />
+            Change Company Image
+          </Button>
+        </div> */}
 
       </div>
+      {/* Company Image */}
+     <Card className="md:col-span-6 col-span-1 h-70 overflow-hidden rounded-xl p-2">
+      <img
+        src="/images/PlanoraLogo.png"
+        alt="Dashboard Banner"
+        className="w-full h-full object-fill"
+      />
+    </Card>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-4">
@@ -39,8 +57,8 @@ export const Dashboard = () => {
       {/* Middle Section */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         {/* Analytics */}
-        <Card className="md:col-span-6 col-span-1">
-          <CardContent className="p-4">
+        <Card className="md:col-span-6 col-span-1 p-4">
+          <CardContent>
             <h2 className="font-semibold text-lg mb-2 text-foreground">
               Project Analytics
             </h2>
@@ -58,7 +76,7 @@ export const Dashboard = () => {
 
         {/* Progress */}
         <Card className="md:col-span-3 col-span-1">
-          <CardContent className="p-4">
+          <CardContent className="">
             <h2 className="text-lg font-semibold mb-4 text-foreground">
               Project Progress
             </h2>

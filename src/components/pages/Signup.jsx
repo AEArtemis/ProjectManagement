@@ -6,26 +6,21 @@ import { Label } from "@/components/ui/label";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Signup = () => {
   const navigate = useNavigate(); // 👈 Init navigation
 
-  const handleLogin = () => {
-    // TODO: Validate credentials, API call, etc.
-
-    // Redirect to /dashboard
-    navigate("/dashboard");
-  };
   return (
     <div className="min-h-screen w-full bg-[#f6f2f3] flex items-center justify-center p-4">
       <div className="bg-white flex flex-col md:flex-row rounded-2xl shadow-lg overflow-hidden max-w-4xl w-full h-[500px]">
         {/* Left Side - Form */}
         <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
-          <h2 className="text-3xl font-bold text-[#7a6650]">Welcome</h2>
+          <h2 className="text-3xl font-bold text-[#7a6650]">Sign Up</h2>
           <p className="italic text-lg text-[#7a6650] mb-4">to Planora</p>
-          <Link to="/signup">
+
+          <Link to="/">
             <p className="text-sm mb-4 text-gray-400">
-              Don't have an account?{" "}
-              <span className="text-pink-700 font-semibold cursor-pointer">Sign Up</span>
+                Already have an account?{" "}
+                <span className="text-pink-700 font-semibold cursor-pointer">Signin</span>
             </p>
           </Link>
           <div className="mb-4">
@@ -38,17 +33,12 @@ export const Login = () => {
             <Input type="password" id="password" placeholder="********" className="text-black mt-1" />
           </div>
 
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center space-x-2">
-              <Checkbox id="remember" />
-              <Label htmlFor="remember" className="text-gray-400">Remember me</Label>
-            </div>
-            <a href="#" className="text-sm text-gray-400 hover:underline">
-              Forgot password?
-            </a>
+          <div className="mb-2">
+            <Label htmlFor="password" className="text-gray-400">Confirm Password</Label>
+            <Input type="password" id="password" placeholder="********" className="text-black mt-1" />
           </div>
 
-          <Button className="w-full bg-[#7a6650] hover:bg-[#6a5744] text-white"  onClick={handleLogin}>Sign In</Button>
+          <Button className="w-full bg-[#7a6650] hover:bg-[#6a5744] text-white">Sign Up</Button>
 
           <div className="flex items-center my-4">
             <div className="flex-grow border-t border-gray-300"></div>

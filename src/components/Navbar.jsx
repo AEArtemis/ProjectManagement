@@ -15,6 +15,14 @@ import {
   Tickets,
   User
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu"
 import logo from "./../assets/images/PlanoraLogo.png";
 import icon from "./../assets/images/PlanoraIcon.png";
 import { ThemeToggle } from "./ThemeToggle";
@@ -51,7 +59,7 @@ const Navbar = () => {
   const titles = {
     "/dashboard": "Dashboard - Planora",
     "/tasks": "Tasks - Planora",
-    "/ticket": "Tickets - Planora",
+    "/tickets": "Tickets - Planora",
     "/calendar": "Calendar - Planora",
     "/projects": "Projects - Planora",
     "/analytics": "Analytics - Planora",
@@ -94,20 +102,22 @@ const Navbar = () => {
     <>
       <nav className="space-y-2">
         <div className="flex h-12 mb-2 relative w-25">
-          <img
-            src={logo}
-            alt="Planora Logo"
-            className={`absolute transition-opacity duration-300 object-contain w-24 ${
-              collapsed && !isMobile ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <img
-            src={icon}
-            alt="Planora Icon"
-            className={`absolute transition-opacity duration-300 object-contain w-9 ${
-              collapsed && !isMobile ? "opacity-100" : "opacity-0"
-            }`}
-          />
+          <Link to="/dashboard" className="flex h-12 mb-2 relative w-25">
+            <img
+              src={logo}
+              alt="Planora Logo"
+              className={`absolute transition-opacity duration-300 object-contain w-24 ${
+                collapsed && !isMobile ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <img
+              src={icon}
+              alt="Planora Icon"
+              className={`absolute transition-opacity duration-300 object-contain w-9 ${
+                collapsed && !isMobile ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          </Link>
         </div>
 
         {!collapsed && (
@@ -118,7 +128,7 @@ const Navbar = () => {
         <NavItem to="/tickets" icon={Tickets} label="Tickets" />
         <NavItem to="/calendar" icon={Calendar} label="Calendar" />
         <NavItem to="/projects" icon={BriefcaseBusiness} label="Projects" />
-        <NavItem to="/analytics" icon={ChartColumnBig} label="Analytics" />
+        {/* <NavItem to="/analytics" icon={ChartColumnBig} label="Analytics" /> */}
         <NavItem to="/team" icon={UsersRound} label="Team" />
 
 
@@ -149,7 +159,7 @@ const Navbar = () => {
   return (
     <>
       {/* Header */}
-      <header
+       <header
         className={`fixed top-0 h-16 bg-background text-foreground flex items-center justify-between px-6 shadow-md z-10
           transition-all duration-300 ease-in-out border-b rounded-xl ${
             isMobile ? "left-4 right-4" : collapsed ? "left-24 right-11" : "left-72 right-11"
@@ -178,16 +188,42 @@ const Navbar = () => {
 
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <button className="relative p-2 hover:bg-muted rounded-full transition-colors" aria-label="Notifications">
-            <Bell className="w-5 h-5" />
-          </button>
+
+          {/* 🔔 Notifications dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                className="relative p-2 hover:bg-muted rounded-full transition-colors focus:outline-none focus:ring-0 cursor-pointer"
+                aria-label="Notifications"
+              >
+                <Bell className="w-5 h-5" />
+                {/* Dot indicator for new notifications */}
+                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+              </button>
+            </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-85 mt-2">
+                <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer">
+                  🔔 New comment on your post
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  📦 Your report is ready to view
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  🎉 Welcome to the dashboard!
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+          {/* User info */}
           <div className="flex items-center space-x-2">
+            <span className="font-medium">John Doe</span>
             <img
               src="/images/Avatar.jpg"
               alt="User Avatar"
-              className="w-8 h-8 rounded-full object-cover"
+              className="w-10 h-10 rounded-full object-cover"
             />
-            <span className="font-medium">John Doe</span>
           </div>
         </div>
       </header>

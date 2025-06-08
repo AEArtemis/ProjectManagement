@@ -1,14 +1,106 @@
 import React from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { Mail, Phone } from 'lucide-react'
 
 export const Help = () => {
   return (
-     <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6 space-y-6">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <h1 className="text-2xl font-semibold text-foreground">Help</h1>
-            <div className="flex gap-2">
-            </div>
-        </div>
+    <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6 space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <h1 className="text-2xl font-semibold text-foreground">Help & Support</h1>
+      </div>
+
+      {/* FAQ Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Frequently Asked Questions</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Accordion type="single" collapsible className="w-full space-y-2">
+            <AccordionItem value="q1">
+              <AccordionTrigger>How can I reset my password?</AccordionTrigger>
+              <AccordionContent>
+                Go to your account settings, click on "Change Password", and follow the instructions.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="q2">
+              <AccordionTrigger>Where can I view my billing details?</AccordionTrigger>
+              <AccordionContent>
+                You can find your billing history under the "Billing" tab in your profile menu.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="q3">
+              <AccordionTrigger>How do I contact customer support?</AccordionTrigger>
+              <AccordionContent>
+                You can contact us via the support form on the Help page or email us at support@example.com.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="q4">
+              <AccordionTrigger>How do I invite team members to a project?</AccordionTrigger>
+              <AccordionContent>
+                Navigate to the project dashboard, click on the "Members" tab, and use the "Invite" button to add users by email.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="q5">
+              <AccordionTrigger>Can I export project data?</AccordionTrigger>
+              <AccordionContent>
+                Yes. Go to your project settings and select "Export Data" to download tasks, timelines, and attachments in CSV or PDF.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="q6">
+              <AccordionTrigger>How do I enable or disable notifications?</AccordionTrigger>
+              <AccordionContent>
+                Visit your Settings page, open the Notifications section, and toggle the options for email or in-app alerts.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="q7">
+              <AccordionTrigger>What roles can I assign to team members?</AccordionTrigger>
+              <AccordionContent>
+                You can assign roles like Admin, Editor, Viewer, or Custom. Each role has different permissions for managing and viewing project content.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="q8">
+              <AccordionTrigger>Is there a mobile app available?</AccordionTrigger>
+              <AccordionContent>
+                Yes, our mobile app is available on both iOS and Android. Search for "ProjectSync" in the app store to download it.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="q9">
+              <AccordionTrigger>How do I archive or delete a project?</AccordionTrigger>
+              <AccordionContent>
+                From the project settings, click "More Options", then choose either "Archive Project" or "Delete Project". Archived projects can be restored later.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </CardContent>
+      </Card>
+
+
+      {/* Contact Support */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Contact Support</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Mail className="w-4 h-4" />
+            <span>support@planora.com</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Phone className="w-4 h-4" />
+            <span>+1 (555) 123-4567</span>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
