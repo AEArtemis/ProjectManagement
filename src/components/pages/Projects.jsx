@@ -75,7 +75,7 @@ export const Projects = () => {
         <h1 className="text-2xl font-semibold text-foreground">Projects</h1>
         <div className="flex gap-2">
           {/* <Button variant="outline">Import Data</Button> */}
-          <Button onClick={() => setShowModal(true)} className="flex items-center gap-2">
+          <Button onClick={() => setShowModal(true)} className="flex items-center gap-2 cursor-pointer">
             <ToyBrick size={16} />
             Create Project
           </Button>

@@ -50,11 +50,11 @@ export const Tasks = () => {
                 
               </CardContent>
             </Card> */}
-            
-            <div className="flex flex-wrap justify-between items-center gap-2">
+            <div className="flex items-center gap-x-2">
+              {/* Filter Dropdown */}
               <Select defaultValue="all">
-                <SelectTrigger className="w-[150px]">
-                  <SelectValue />
+                <SelectTrigger className="w-[130px]">
+                  <SelectValue placeholder="Filter" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All</SelectItem>
@@ -62,197 +62,198 @@ export const Tasks = () => {
                   <SelectItem value="completed">Completed</SelectItem>
                 </SelectContent>
               </Select>
+
+              {/* Search Input */}
+              <input
+                type="text"
+                placeholder="Search..."
+                className="w-full border border-border bg-background text-foreground px-2 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+              />
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Card 1 */}
-              <Card className="shadow-sm flex flex-col h-full">
-                <CardContent className="flex flex-col justify-between h-full space-y-3">
-                  <div>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <span className="text-md font-bold bg-blue-100 text-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
-                          Quality Assurance Quality Assurance Quality Assurance
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded">
-                          High
-                        </span>
-                      </div>
+            {/* Card 1 */}
+            <Card className="flex flex-col h-full overflow-hidden p-0">
+              <div className="justify-between p-4 pb-0">
+                {/* Main content */}
+                <div>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <span className="text-md font-bold bg-blue-100 text-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
+                        #PLN12045214
+                      </span>
                     </div>
-                    <div className="text-left pb-2 pt-2">
-                      <p className="text-sm text-foreground line-clamp-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
-                      </p>
+
+                    <div className="flex flex-col items-center">
+                      <div className="relative w-11 h-11 mb-1">
+                        {/* Spinning gradient ring if gradient -> border-t-blue-500 border-r-purple-500*/}
+                        <div className="absolute inset-0 rounded-full border-2 border-violet-500 border-b-transparent border-l-transparent animate-[spin_4s_linear_infinite]" />
+                        {/* Avatar inside the ring*/}
+                        <img
+                          src="/images/Avatar.jpg"
+                          alt="Profile"
+                          className="w-9 h-9 rounded-full absolute top-1 left-1 z-10"
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  {/* bottom always aligned */}
-                  <div className="flex items-center justify-between mt-auto pt-2">
-                    <div className="flex items-center space-x-2">
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Calendar className="w-3 h-3" />
-                        <span>06/06/2025</span>
-                      </span>
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <MessageCircle className="w-3 h-3" />
-                        <span>5</span>
-                      </span>
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Paperclip className="w-3 h-3" />
-                        <span>5</span>
-                      </span>
-                    </div>
-                    <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
-                      Planora
+                  <div className="text-left py-2">
+                    <p className="text-sm font-bold text-foreground line-clamp-4">
+                      Lorem ipsum dolor sit amet
+                    </p>
+                    <p className="text-sm text-foreground line-clamp-4">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
+                    </p>
+                  </div>
+                </div>
+                {/* Bottom info row */}
+                <div className="flex items-center justify-between pt-2">
+                  <div className="flex items-center space-x-2">
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <Calendar className="w-3 h-3" />
+                      <span>06/06/2025</span>
+                    </span>
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <MessageCircle className="w-3 h-3" />
+                      <span>5</span>
+                    </span>
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <Paperclip className="w-3 h-3" />
+                      <span>5</span>
                     </span>
                   </div>
-                </CardContent>
-              </Card>
+                  <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
+                    Planora
+                  </span>
+                </div>
+              </div>
+              {/* Colored bot panel */}
+              <div className="h-1 bg-green-500 w-full" />
+            </Card>
 
-
-              {/* Card 2 */}
-              <Card className="shadow-sm flex flex-col h-full">
-                <CardContent className="flex flex-col justify-between h-full space-y-3">
-                  <div>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <span className="text-md font-bold bg-blue-100 text-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
-                          Web Design
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <span className="text-xs font-bold bg-orange-100 text-orange-800 px-2 py-1 rounded">
-                          Medium
-                        </span>
-                      </div>
+            {/* Card 2 */}
+            <Card className="flex flex-col h-full overflow-hidden p-0">
+              <div className="justify-between p-4 pb-0">
+                {/* Main content */}
+                <div>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <span className="text-md font-bold bg-blue-100 text-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
+                        #PLN12039984
+                      </span>
                     </div>
-                    <div className="text-left pb-2 pt-2">
-                      <p className="text-sm text-foreground line-clamp-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
-                      </p>
+
+                    <div className="flex flex-col items-center">
+                      <div className="relative w-11 h-11 mb-1">
+                        {/* Spinning gradient ring if gradient -> border-t-blue-500 border-r-purple-500*/}
+                        <div className="absolute inset-0 rounded-full border-2 border-violet-500 border-b-transparent border-l-transparent animate-[spin_4s_linear_infinite]" />
+                        {/* Avatar inside the ring*/}
+                        <img
+                          src="/images/Avatar.jpg"
+                          alt="Profile"
+                          className="w-9 h-9 rounded-full absolute top-1 left-1 z-10"
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  {/* bottom always aligned */}
-                  <div className="flex items-center justify-between mt-auto pt-2">
-                    <div className="flex items-center space-x-2">
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Calendar className="w-3 h-3" />
-                        <span>06/06/2025</span>
-                      </span>
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <MessageCircle className="w-3 h-3" />
-                        <span>5</span>
-                      </span>
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Paperclip className="w-3 h-3" />
-                        <span>5</span>
-                      </span>
-                    </div>
-                    <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
-                      Planora
+                  <div className="text-left py-2">
+                    <p className="text-sm font-bold text-foreground line-clamp-4">
+                      Lorem ipsum dolor sit amet
+                    </p>
+                    <p className="text-sm text-foreground line-clamp-4">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
+                    </p>
+                  </div>
+                </div>
+                {/* Bottom info row */}
+                <div className="flex items-center justify-between pt-2">
+                  <div className="flex items-center space-x-2">
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <Calendar className="w-3 h-3" />
+                      <span>06/06/2025</span>
+                    </span>
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <MessageCircle className="w-3 h-3" />
+                      <span>5</span>
+                    </span>
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <Paperclip className="w-3 h-3" />
+                      <span>5</span>
                     </span>
                   </div>
-                </CardContent>
-              </Card>
-              {/* Card 1 */}
-              <Card className="shadow-sm flex flex-col h-full">
-                <CardContent className="flex flex-col justify-between h-full space-y-3">
-                  <div>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <span className="text-md font-bold bg-blue-100 text-blue-300 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
-                          Quality Assurance Quality Assurance Quality Assurance
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded">
-                          High
-                        </span>
-                      </div>
+                  <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
+                    Planora
+                  </span>
+                </div>
+              </div>
+              {/* Colored bot panel */}
+              <div className="h-1 bg-red-500 w-full" />
+            </Card>
+
+            {/* Card 3 */}
+            <Card className="flex flex-col h-full overflow-hidden p-0">
+              <div className="justify-between p-4 pb-0">
+                {/* Main content */}
+                <div>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <span className="text-md font-bold bg-blue-100 text-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
+                        #PLN12043924
+                      </span>
                     </div>
-                    <div className="text-left pb-2 pt-2">
-                      <p className="text-sm text-foreground line-clamp-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
-                      </p>
+
+                    <div className="flex flex-col items-center">
+                      <div className="relative w-11 h-11 mb-1">
+                        {/* Spinning gradient ring if gradient -> border-t-blue-500 border-r-purple-500*/}
+                        <div className="absolute inset-0 rounded-full border-2 border-violet-500 border-b-transparent border-l-transparent animate-[spin_4s_linear_infinite]" />
+                        {/* Avatar inside the ring*/}
+                        <img
+                          src="/images/Avatar.jpg"
+                          alt="Profile"
+                          className="w-9 h-9 rounded-full absolute top-1 left-1 z-10"
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  {/* bottom always aligned */}
-                  <div className="flex items-center justify-between mt-auto pt-2">
-                    <div className="flex items-center space-x-2">
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Calendar className="w-3 h-3" />
-                        <span>06/06/2025</span>
-                      </span>
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <MessageCircle className="w-3 h-3" />
-                        <span>5</span>
-                      </span>
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Paperclip className="w-3 h-3" />
-                        <span>5</span>
-                      </span>
-                    </div>
-                    <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
-                      Planora
+                  <div className="text-left py-2">
+                    <p className="text-sm font-bold text-foreground line-clamp-4">
+                      Lorem ipsum dolor sit amet
+                    </p>
+                    <p className="text-sm text-foreground line-clamp-4">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
+                    </p>
+                  </div>
+                </div>
+                {/* Bottom info row */}
+                <div className="flex items-center justify-between pt-2">
+                  <div className="flex items-center space-x-2">
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <Calendar className="w-3 h-3" />
+                      <span>06/06/2025</span>
+                    </span>
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <MessageCircle className="w-3 h-3" />
+                      <span>5</span>
+                    </span>
+                    <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <Paperclip className="w-3 h-3" />
+                      <span>5</span>
                     </span>
                   </div>
-                </CardContent>
-              </Card>
-
-
-              {/* Card 2 */}
-              <Card className="shadow-sm flex flex-col h-full">
-                <CardContent className="flex flex-col justify-between h-full space-y-3">
-                  <div>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <span className="text-md font-bold bg-blue-100 text-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
-                          Web Design
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <span className="text-xs font-bold bg-orange-100 text-orange-800 px-2 py-1 rounded">
-                          Medium
-                        </span>
-                      </div>
-                    </div>
-                    <div className="text-left pb-2 pt-2">
-                      <p className="text-sm text-foreground line-clamp-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nec scelerisque massa.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* bottom always aligned */}
-                  <div className="flex items-center justify-between mt-auto pt-2">
-                    <div className="flex items-center space-x-2">
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Calendar className="w-3 h-3" />
-                        <span>06/06/2025</span>
-                      </span>
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <MessageCircle className="w-3 h-3" />
-                        <span>5</span>
-                      </span>
-                      <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Paperclip className="w-3 h-3" />
-                        <span>5</span>
-                      </span>
-                    </div>
-                    <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
-                      Planora
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
-
+                  <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
+                    Planora
+                  </span>
+                </div>
+              </div>
+              {/* Colored bot panel */}
+              <div className="h-1 bg-orange-500 w-full" />
+            </Card>
             </div>
           </div>
 

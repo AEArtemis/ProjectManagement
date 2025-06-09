@@ -345,7 +345,7 @@ export const Profile = () => {
               <DialogTitle>Edit Company</DialogTitle>
             </DialogHeader>
 
-            <ScrollArea className="max-h-[50vh] sm:max-h-[350px] pr-2 space-y-4">
+            <ScrollArea className="max-h-[50vh] sm:max-h-[350px] pr-4 space-y-4">
               {/* Image uploader */}
               <div className="flex flex-col items-center space-y-2">
                 <label htmlFor="company-image" className="cursor-pointer">
@@ -375,6 +375,17 @@ export const Profile = () => {
                 <Input
                   type="text"
                   placeholder="Company Name"
+                  className="w-full p-2 border border-muted rounded-md focus-visible:ring-1"
+                />
+              </div>
+              {/* Company Abbreviation */}
+              <div className="pt-4">
+                <Label className="block text-sm font-medium text-muted-foreground">
+                  Abbreviation
+                </Label>
+                <Input
+                  type="text"
+                  placeholder="Abbreviation"
                   className="w-full p-2 border border-muted rounded-md focus-visible:ring-1"
                 />
               </div>

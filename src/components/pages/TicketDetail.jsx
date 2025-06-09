@@ -116,7 +116,7 @@ export const TicketDetail = () => {
                             <h4 className="text-lg font-semibold text-left mb-4">Image Attached</h4>
 
                             {/* Use flex-wrap and gap, with responsive widths */}
-                            <div className="flex flex-wrap gap-4 justify-start">
+                            <div className="flex flex-wrap gap-4 justify-center">
                             {images.map((src, index) => (
                                 <img
                                 key={index}

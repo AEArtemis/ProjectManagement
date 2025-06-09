@@ -138,7 +138,6 @@ const Navbar = () => {
         <NavItem to="/profile" icon={User} label="Profile" />
         <NavItem to="/help" icon={LifeBuoy} label="Help" />
         <NavItem to="/settings" icon={Settings} label="Settings" />
-
       </nav>
 
       <button
