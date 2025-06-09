@@ -216,14 +216,21 @@ const Navbar = () => {
             </DropdownMenu>
 
           {/* User info */}
-          <div className="flex items-center space-x-2">
-            <span className="font-medium">John Doe</span>
-            <img
-              src="/images/Avatar.jpg"
-              alt="User Avatar"
-              className="w-10 h-10 rounded-full object-cover"
-            />
-          </div>
+          <Link to="/profile"> 
+            <div className="flex items-center space-x-2">
+              <span className="font-medium">John Doe</span>
+                
+              <div className="relative w-11 h-11">
+              {/* Spinning Circle */}
+              <div className="absolute inset-0 rounded-full border-2 border-t-blue-500 border-r-red-500 border-b-violet-500 border-l-transparent animate-[spin_4s_linear_infinite]" />
+              <img
+                  src="/images/Avatar.jpg"
+                  alt="User Avatar"
+                  className="w-9 h-9 rounded-full absolute top-1 left-1 object-cover z-10"
+                />
+              </div>
+            </div>
+            </Link>
         </div>
       </header>
 

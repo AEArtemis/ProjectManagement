@@ -86,9 +86,9 @@ export const Tasks = () => {
 
                     <div className="flex flex-col items-center">
                       <div className="relative w-11 h-11 mb-1">
-                        {/* Spinning gradient ring if gradient -> border-t-blue-500 border-r-purple-500*/}
+                        {/* Spinning Circle*/}
                         <div className="absolute inset-0 rounded-full border-2 border-violet-500 border-b-transparent border-l-transparent animate-[spin_4s_linear_infinite]" />
-                        {/* Avatar inside the ring*/}
+
                         <img
                           src="/images/Avatar.jpg"
                           alt="Profile"
