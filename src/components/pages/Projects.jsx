@@ -81,6 +81,24 @@ export const Projects = () => {
           </Button>
         </div>
       </div>
+      <div className="flex items-center gap-x-2">
+        {/* Filter Dropdown */}
+        {/* <Select defaultValue="all">
+          <SelectTrigger className="w-[130px]">
+            <SelectValue placeholder="Filter" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+          </SelectContent>
+        </Select> */}
+
+        {/* Search Input */}
+        <Input
+          type="text"
+          placeholder="Search..."
+          className="w-120 border border-border bg-background text-foreground px-2 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[1, 2, 3, 4].map((i, index) => (
           <Card key={i} className="shadow-sm relative overflow-visible">
@@ -125,7 +143,7 @@ export const Projects = () => {
 
             <CardContent className="pt-4 space-y-3">
               <div className="flex justify-center">
-                <div className="w-[200px] h-[200px] rounded-lg overflow-hidden">
+                <div className="w-[150px] h-[150px] rounded-lg overflow-hidden">
                   <img
                     src="/images/ProjectImage.png"
                     alt="Project Thumbnail"
@@ -137,9 +155,6 @@ export const Projects = () => {
                 <h5 className="text-lg font-medium text-foreground">
                   {["Planora", "Ecommerce Revamp", "Project Phoenix", "Accenture"][i - 1]}
                 </h5>
-                <p className="text-sm text-muted-foreground">
-                  {i === 4 ? "Role: Full Stack Engineer" : "Role: UI/UX" }
-                </p>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center -space-x-2">

@@ -26,11 +26,11 @@ export const Dashboard = () => {
 
       </div>
       {/* Company Image */}
-     <Card className="md:col-span-6 col-span-1 h-70 overflow-hidden rounded-xl p-2">
+     <Card className="md:col-span-6 col-span-1 h-75 overflow-hidden rounded-xl p-2">
       <img
-        src="/images/PlanoraLogo.png"
+        src="/images/company-images/CompanyImageSample.jpg"
         alt="Dashboard Banner"
-        className="w-full h-full object-fill"
+        className="w-full h-full object-fill rounded-md"
       />
     </Card>
 

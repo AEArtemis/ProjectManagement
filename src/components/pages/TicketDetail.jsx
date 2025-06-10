@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "../ui/textarea";
-import { X, MessageCircle} from "lucide-react";
+import { X, MessageCircle, Image, Paperclip} from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -20,6 +20,8 @@ const images = [
 export const TicketDetail = () => {
     // Carousel
     const [open, setOpen] = useState(false);
+    const [commentImageModalOpen, setCommentImageModalOpen] = useState(false);
+    const [commentImages, setCommentImages] = useState([]);
     return (
         <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6">
             {/* Header */}
@@ -140,45 +142,12 @@ export const TicketDetail = () => {
                         </Card>
                     </div> */}
                 </div>
-                {/* Modal Carousel */}
-                {open && (
-                    <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-                        {/* Close Button */}
-                        <Button
-                            onClick={() => setOpen(false)}
-                            className="absolute top-4 right-6 text-white"
-                            variant="ghost"
-                            size="icon"
-                        >
-                        <X className="w-8 h-8" />
-                        </Button>
-
-                        <div className="relative w-full max-w-3xl">
-                        <Carousel opts={{ loop: false }}>
-                            <CarouselContent>
-                            {images.map((src, index) => (
-                                <CarouselItem key={index} className="flex justify-center items-center">
-                                <img
-                                    src={src}
-                                    alt={`Slide ${index + 1}`}
-                                    className="max-h-[80vh] object-contain rounded"
-                                />
-                                </CarouselItem>
-                            ))}
-                            </CarouselContent>
-
-                            <CarouselPrevious className="left-4" />
-                            <CarouselNext className="right-4" />
-                        </Carousel>
-                        </div>
-                    </div>
-                )}
 
                 {/* Right Sidebar Card */}
                 <Card className="shadow-md self-start">
                     <CardContent className="p-4 space-y-2">
                         <h4 className="text-lg font-semibold text-left">Ticket Chat</h4>
-                        <Card className="col-span-1">
+                        <Card className="col-span-1 rounded-none shadow-none">
                             <CardContent className="flex flex-col gap-2 h-full">
                                 <div className="flex items-center gap-4">
                                     <div className="flex items-center justify-center">
@@ -203,7 +172,7 @@ export const TicketDetail = () => {
 
                                 <p className="flex items-center text-sm font-bold text-foreground pt-4 text-left gap-2">
                                     <MessageCircle className="w-5 h-5" />
-                                    Comments (2)
+                                    Comments (1)
                                 </p>
 
                                 {/* Divider */}
@@ -221,23 +190,136 @@ export const TicketDetail = () => {
                                         <p className="text-md font-bold text-foreground">John Doe</p>
                                         <p className="text-sm text-muted-foreground">3 hours ago</p>
                                     </div>
-                                </div>
-                                <div className="text-left">
-                                    <p className="text-sm text-foreground">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum enim vitae turpis fringilla maximus. Nulla egestas tempus mauris non rutrum.</p>
-                                </div>
+                                    </div>
+
+                                    <div className="text-left">
+                                    {/* Small images section */}
+                                        <div className="flex gap-2 mb-2">
+                                        {["/images/Avatar.jpg", "/images/favicon.png", "/images/ProjectImage.png"].map((src, index) => (
+                                            <img
+                                            key={index}
+                                            src={src}
+                                            alt={`Comment Image ${index + 1}`}
+                                            className="w-16 h-16 object-cover rounded cursor-pointer border"
+                                            onClick={() => {
+                                                setCommentImages([
+                                                "/images/Avatar.jpg",
+                                                "/images/favicon.png",
+                                                "/images/ProjectImage.png",
+                                                ]);
+                                                setCommentImageModalOpen(true);
+                                            }}
+                                            />
+                                        ))}
+                                        </div>
+
+                                        {/* Paragraph text */}
+                                        <p className="text-sm text-foreground">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum enim vitae turpis fringilla maximus. Nulla egestas tempus mauris non rutrum.
+                                        </p>
+                                    </div>
+
                             </CardContent>
                         </Card>
-                        <Card className="shadow-md self-start">
-                            <CardContent className="space-y-2">
-                                <Textarea rows={20} placeholder="Message" className="focus-visible:ring-1 h-30"/>
-                                <div className="pt-2">
-                                    <Button className="w-full">Send</Button>
-                                </div>
-                            </CardContent>
+                        <Card className="shadow-md self-start rounded-none shadow-none">
+                        <CardContent className="space-y-2">
+                            <Textarea
+                            rows={20}
+                            placeholder="Message"
+                            className="focus-visible:ring-1 h-30
+                            bg-background text-foreground rounded-none"
+                            />
+
+                            {/* Icons + Send */}
+                            <div className="flex items-center justify-between pt-2">
+                            <div className="flex gap-4">
+                                <button
+                                type="button"
+                                className="text-gray-500 hover:text-black transition-colors"
+                                >
+                                <Image className="w-4 h-4" />
+                                </button>
+
+                                <button
+                                type="button"
+                                className="text-gray-500 hover:text-black transition-colors"
+                                >
+                                <Paperclip className="w-4 h-4" />
+                                </button>
+                            </div>
+
+                            <Button className="px-6">Send</Button>
+                            </div>
+                        </CardContent>
                         </Card>
                     </CardContent>
                 </Card>
             </div>
+
+            {/* Modal Carousel */}
+            {open && (
+                <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+                    {/* Close Button */}
+                    <Button
+                        onClick={() => setOpen(false)}
+                        className="absolute top-4 right-6 text-white"
+                        variant="ghost"
+                        size="icon"
+                    >
+                    <X className="w-8 h-8" />
+                    </Button>
+
+                    <div className="relative w-full max-w-3xl">
+                    <Carousel opts={{ loop: false }}>
+                        <CarouselContent>
+                        {images.map((src, index) => (
+                            <CarouselItem key={index} className="flex justify-center items-center">
+                            <img
+                                src={src}
+                                alt={`Slide ${index + 1}`}
+                                className="max-h-[80vh] object-contain rounded"
+                            />
+                            </CarouselItem>
+                        ))}
+                        </CarouselContent>
+
+                        <CarouselPrevious className="left-4" />
+                        <CarouselNext className="right-4" />
+                    </Carousel>
+                    </div>
+                </div>
+            )}
+            {commentImageModalOpen && (
+            <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+                <button
+                onClick={() => setCommentImageModalOpen(false)}
+                className="absolute top-4 right-6 text-white"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                </button>
+
+                <div className="relative w-full max-w-3xl">
+                <Carousel loop={false}>
+                    <CarouselContent>
+                    {commentImages.map((src, index) => (
+                        <CarouselItem key={index} className="flex justify-center items-center">
+                        <img
+                            src={src}
+                            alt={`Comment Slide ${index + 1}`}
+                            className="max-h-[80vh] object-contain rounded"
+                        />
+                        </CarouselItem>
+                    ))}
+                    </CarouselContent>
+
+                    <CarouselPrevious className="left-4" />
+                    <CarouselNext className="right-4" />
+                </Carousel>
+                </div>
+            </div>
+            )}
         </div>
     );
 };

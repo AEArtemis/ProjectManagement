@@ -159,7 +159,7 @@ const Navbar = () => {
     <>
       {/* Header */}
        <header
-        className={`fixed top-0 h-16 bg-background text-foreground flex items-center justify-between px-6 shadow-md z-10
+        className={`fixed top-0 h-16 bg-white dark:bg-muted text-foreground flex items-center justify-between px-6 shadow-md z-10
           transition-all duration-300 ease-in-out border-b rounded-xl ${
             isMobile ? "left-4 right-4" : collapsed ? "left-24 right-11" : "left-72 right-11"
           } dark:shadow-lg dark:border-muted`}
@@ -219,18 +219,23 @@ const Navbar = () => {
           <Link to="/profile"> 
             <div className="flex items-center space-x-2">
               <span className="font-medium">John Doe</span>
-                
+
               <div className="relative w-11 h-11">
-              {/* Spinning Circle */}
-              <div className="absolute inset-0 rounded-full border-2 border-t-blue-500 border-r-red-500 border-b-violet-500 border-l-transparent animate-[spin_4s_linear_infinite]" />
-              <img
+                {/* Spinning Circle */}
+                <div className="absolute inset-0 rounded-full border-2 border-t-[#d53e4f] border-r-[#d53e4f] border-b-[#d53e4f] border-l-transparent animate-[spin_4s_linear_infinite]" />
+
+                {/* Avatar */}
+                <img
                   src="/images/Avatar.jpg"
                   alt="User Avatar"
                   className="w-9 h-9 rounded-full absolute top-1 left-1 object-cover z-10"
                 />
+
+                {/* Online Dot */}
+                <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full z-20" />
               </div>
             </div>
-            </Link>
+          </Link>
         </div>
       </header>
 

@@ -64,7 +64,7 @@ export const Tasks = () => {
               </Select>
 
               {/* Search Input */}
-              <input
+              <Input
                 type="text"
                 placeholder="Search..."
                 className="w-full border border-border bg-background text-foreground px-2 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
@@ -85,8 +85,8 @@ export const Tasks = () => {
                     </div>
 
                     <div className="flex flex-col items-center">
-                      <div className="relative w-11 h-11 mb-1">
-                        {/* Spinning Circle*/}
+                      <div className="relative w-11 h-11 mb-1 group">
+                        {/* Spinning Circle */}
                         <div className="absolute inset-0 rounded-full border-2 border-violet-500 border-b-transparent border-l-transparent animate-[spin_4s_linear_infinite]" />
 
                         <img
@@ -94,10 +94,14 @@ export const Tasks = () => {
                           alt="Profile"
                           className="w-9 h-9 rounded-full absolute top-1 left-1 z-10"
                         />
+
+                        {/* Tooltip to the left */}
+                        <span className="absolute top-1/2 right-full mr-2 transform -translate-y-1/2 rounded bg-gray-900 text-white text-xs px-2 py-1 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100 whitespace-nowrap z-20">
+                          John Doe
+                        </span>
                       </div>
                     </div>
                   </div>
-
                   <div className="text-left py-2">
                     <p className="text-sm font-bold text-foreground line-clamp-4">
                       Lorem ipsum dolor sit amet

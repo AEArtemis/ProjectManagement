@@ -21,15 +21,26 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Mail, Circle, Smartphone, Cake, Hourglass, Pencil, Building, MailIcon } from "lucide-react";
 
 export const Profile = () => {
+  // profile modal 
   const [showModal, setShowModal] = useState(false);
-  const [showModalCompany, setShowModalCompany] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null)
-
-  const handleImageChange = (e) => {
+  const [imagePreviewProfile, setImagePreviewProfile] = useState(null)
+  const handleImageChangeProfile = (e) => {
     const file = e.target.files?.[0]
     if (file) {
       const reader = new FileReader()
-      reader.onloadend = () => setImagePreview(reader.result)
+      reader.onloadend = () => setImagePreviewProfile(reader.result)
+      reader.readAsDataURL(file)
+    }
+  }
+
+  // company modal
+  const [showModalCompany, setShowModalCompany] = useState(false);
+  const [imagePreviewCompany, setImagePreviewCompany] = useState(null)
+  const handleImageChangeCompany = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => setImagePreviewCompany(reader.result)
       reader.readAsDataURL(file)
     }
   }
@@ -38,7 +49,7 @@ export const Profile = () => {
       {/* Header */}
       <div className="flex flex-wrap justify-between items-center gap-2">
         <h1 className="text-2xl font-semibold text-foreground">Profile</h1>
-       <div className="flex gap-2">
+        <div className="flex gap-2">
           <Button
             onClick={() => setShowModal(true)}
             variant="outline"
@@ -55,7 +66,6 @@ export const Profile = () => {
             Edit Company
           </Button>
         </div>
-
       </div>
 
         {/* Main Grid */}
@@ -264,8 +274,26 @@ export const Profile = () => {
             <DialogHeader className="pb-4">
               <DialogTitle>Edit Profile</DialogTitle>
             </DialogHeader>
-
-            <ScrollArea className="max-h-[50vh] sm:max-h-[350px] pr-2 space-y-4">
+            <ScrollArea className="max-h-[50vh] sm:max-h-[350px] pr-4 space-y-4">
+              <div className="flex flex-col items-center space-y-2">
+                <label htmlFor="profile-image" className="cursor-pointer">
+                  <div className="w-30 h-30 rounded-full overflow-hidden border border-muted">
+                    <img
+                      src={imagePreviewProfile || "/images/Avatar.jpg"}
+                      alt="Avatar"
+                      className="w-full h-full object-fill"
+                    />
+                  </div>
+                  <Input
+                    id="profile-image"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageChangeProfile}
+                  />
+                </label>
+                <span className="text-sm text-muted-foreground">Click image to upload</span>
+              </div>
               <Label className="block text-sm font-medium text-muted-foreground">
                 Name
               </Label>
@@ -351,7 +379,7 @@ export const Profile = () => {
                 <label htmlFor="company-image" className="cursor-pointer">
                   <div className="w-full h-40 rounded-sm overflow-hidden border border-muted">
                     <img
-                      src={imagePreview || "/images/PlanoraLogo.png"}
+                      src={imagePreviewCompany || "/images/PlanoraLogo.png"}
                       alt="Company Logo"
                       className="w-full h-full object-fill"
                     />
@@ -361,7 +389,7 @@ export const Profile = () => {
                     type="file"
                     accept="image/*"
                     className="hidden"
-                    onChange={handleImageChange}
+                    onChange={handleImageChangeCompany}
                   />
                 </label>
                 <span className="text-sm text-muted-foreground">Click image to upload</span>

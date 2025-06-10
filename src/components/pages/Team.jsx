@@ -24,10 +24,10 @@ export const Team = () => {
   const [showModalDep, setShowModalDep] = useState(false);
   const [projectColor, setProjectColor] = useState("#7F00FF");
   const members = [
-    { id: 1, name: "John Doe", role: "Software Developer", avatar: "/images/Avatar.jpg" },
-    { id: 2, name: "Jane Smith", role: "Product Manager", avatar: "/images/Avatar.jpg" },
-    { id: 3, name: "Alice Johnson", role: "UX Designer", avatar: "/images/Avatar.jpg" },
-    { id: 4, name: "Bob Brown", role: "QA Engineer", avatar: "/images/Avatar.jpg" },
+    { id: 1, name: "John Doe", role: "Software Developer", department: "Software Develpoment Department", avatar: "/images/Avatar.jpg" },
+    { id: 2, name: "Jane Smith", role: "Product Manager", department: "Software Develpoment Department",avatar: "/images/Avatar.jpg" },
+    { id: 3, name: "Alice Johnson", role: "UX Designer", department: "Software Develpoment Department",avatar: "/images/Avatar.jpg" },
+    { id: 4, name: "Bob Brown", role: "QA Engineer", department: "Software Develpoment Department",avatar: "/images/Avatar.jpg" },
   ];
 
   return (
@@ -50,7 +50,24 @@ export const Team = () => {
           </Button>
         </div>
       </div>
+      <div className="flex items-center gap-x-2">
+        {/* Filter Dropdown */}
+        <Select defaultValue="all">
+          <SelectTrigger className="w-[130px]">
+            <SelectValue placeholder="Filter" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+          </SelectContent>
+        </Select>
 
+        {/* Search Input */}
+        <Input
+          type="text"
+          placeholder="Search..."
+          className="w-120 border border-border bg-background text-foreground px-2 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+        />
+      </div>
       {/* Main Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {members.map((member) => (
@@ -64,7 +81,8 @@ export const Team = () => {
                     className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover mb-4 shadow-md"
                   />
                   <h2 className="text-lg font-semibold text-foreground">{member.name}</h2>
-                  <p className="text-sm text-muted-foreground">{member.role}</p>
+                  <p className="text-sm text-muted-foreground">{member.department}</p>
+                  {/* <p className="text-sm text-muted-foreground">{member.role}</p> */}
                   <div className="pt-2">
                     <Link to="/profile">
                       <Button>Profile</Button>

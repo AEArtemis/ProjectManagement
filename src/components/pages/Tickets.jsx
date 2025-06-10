@@ -41,6 +41,7 @@ export const Tickets = () => {
       id: 1,
       ticketId: "PLNRT741362",
       subject: "Login issue",
+      avatar: "/images/Avatar.jpg",
       assignedTo: "Mark",
       status: "In Progress",
       date: "2025-06-01",
@@ -49,6 +50,7 @@ export const Tickets = () => {
       id: 2,
       ticketId: "PLNRT126273",
       subject: "Dark mode bug",
+      avatar: "/images/Avatar.jpg",
       assignedTo: "Ace",
       status: "Completed",
       date: "2025-06-02",
@@ -57,6 +59,7 @@ export const Tickets = () => {
       id: 3,
       ticketId: "PLNRT123123",
       subject: "UI Feedback",
+      avatar: "/images/Avatar.jpg",
       assignedTo: "Candy",
       status: "Priority",
       date: "2025-06-03",
@@ -123,16 +126,15 @@ export const Tickets = () => {
 
       </div>
 
-
       {/* Search Bar */}
       <Input
         type="text"
-        placeholder="Search tickets..."
-        className="w-full max-w-md"
+        placeholder="Search..."
+        className="w-120 border border-border bg-background text-foreground px-2 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         value={searchQuery}
         onChange={(e) => {
           setSearchQuery(e.target.value);
-          setCurrentPage(1); // reset page on search
+          setCurrentPage(1);
         }}
       />
 
@@ -191,7 +193,14 @@ export const Tickets = () => {
                 </TableCell>
                 <TableCell className="text-left">{ticket.subject}</TableCell>
                 <TableCell className="text-left whitespace-nowrap">
-                  {ticket.assignedTo}
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={ticket.avatar}
+                      alt={ticket.assignedTo}
+                      className="w-6 h-6 rounded-full object-cover"
+                    />
+                    <span>{ticket.assignedTo}</span>
+                  </div>
                 </TableCell>
                 <TableCell className="text-left whitespace-nowrap">
                   {ticket.status}
