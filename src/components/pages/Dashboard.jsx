@@ -4,25 +4,68 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Clock, Pencil } from "lucide-react";
+import { Input } from '../ui/input';
 
 export const Dashboard = () => {
   const [progress, setProgress] = useState(41);
+  const [role, setRole] = useState("employee"); 
+  const [confirmedRole, setConfirmedRole] = useState(null); 
 
+  const [confirmText, setConfirmText] = useState("");
+  const instructions = {
+    employee: "You’ll be able to manage tasks, track time, and collaborate with your team.",
+    company: "You’ll manage employees, assign projects, and oversee progress across the board.",
+  };
   return (
     <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6 space-y-6">
+      {/* Masking while type is null or empty */}
+        {/* {!confirmedRole && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
+          <div className="bg-white dark:bg-zinc-800 rounded-xl p-8 shadow-lg text-center space-y-6 w-[90%] max-w-md">
+            <h2 className="text-2xl font-semibold text-foreground">Continue as</h2>
+
+            <div className="flex justify-center items-center gap-4">
+              <Button
+                onClick={() => setRole("employee")}
+                className={`w-40 ${role === "employee" ? "ring-2 ring-primary" : ""}`}
+              >
+                Employee
+              </Button>
+              <Button
+                onClick={() => setRole("company")}
+                variant={role === "company" ? "default" : "outline"}
+                className={`w-40 ${role === "company" ? "ring-2 ring-primary" : ""}`}
+              >
+                Company
+              </Button>
+            </div>
+
+            <div className="text-sm text-muted-foreground mt-4">
+              <p>{instructions[role]}</p>
+              
+              <div className="mt-4 space-y-4">
+                <Input
+                  value={confirmText}
+                  onChange={(e) => setConfirmText(e.target.value)}
+                  placeholder='Type "Confirm" to continue'
+                  className="w-full"
+                />
+                <Button
+                  onClick={() => setConfirmedRole(role)}
+                  disabled={confirmText !== "Confirm"} 
+                  className="w-full"
+                >
+                  Save and Continue
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )} */}
+
       {/* Header */}
       <div className="flex flex-wrap justify-between items-center gap-2">
         <h1 className="text-2xl font-semibold text-foreground">Company Name / Dashboard</h1>
-       {/* <div className="flex gap-2">
-          <Button
-            onClick={() => setShowModal(true)}
-            variant="outline"
-            className="flex items-center gap-2 cursor-pointer"
-          >
-            <Pencil size={16} />
-            Change Company Image
-          </Button>
-        </div> */}
 
       </div>
       {/* Company Image */}
@@ -38,7 +81,7 @@ export const Dashboard = () => {
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-4">
         {[
           { label: "Total Projects", value: 24 },
-          { label: "Ended Projects", value: 10 },
+          { label: "Finished Projects", value: 10 },
           { label: "Running Projects", value: 12 },
           { label: "Pending Projects", value: 2, sub: "On Discuss" },
         ].map((item, i) => (
@@ -141,14 +184,14 @@ export const Dashboard = () => {
             <h2 className="text-lg font-semibold mb-4 text-foreground">
               Time Tracker
             </h2>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4">
               <Clock className="w-6 h-6 text-primary" />
               <p className="text-2xl font-bold text-foreground">01:24:08</p>
             </div>
-            <div className="mt-4 flex gap-2">
-              <Button size="sm">⏸</Button>
+            <div className="mt-4 flex gap-2 items-center justify-center ">
+              <Button size="sm">Pause</Button>
               <Button size="sm" variant="destructive">
-                ⏹
+                Start
               </Button>
             </div>
           </CardContent>

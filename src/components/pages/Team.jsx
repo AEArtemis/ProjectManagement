@@ -81,8 +81,8 @@ export const Team = () => {
                     className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover mb-4 shadow-md"
                   />
                   <h2 className="text-lg font-semibold text-foreground">{member.name}</h2>
-                  <p className="text-sm text-muted-foreground">{member.department}</p>
-                  {/* <p className="text-sm text-muted-foreground">{member.role}</p> */}
+                  <p className="text-sm font-bold text-foreground">{member.department}</p>
+                  <p className="text-sm text-muted-foreground">{member.role}</p>
                   <div className="pt-2">
                     <Link to="/profile">
                       <Button>Profile</Button>

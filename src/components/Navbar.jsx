@@ -159,8 +159,8 @@ const Navbar = () => {
     <>
       {/* Header */}
        <header
-        className={`fixed top-0 h-16 bg-white dark:bg-muted text-foreground flex items-center justify-between px-6 shadow-md z-10
-          transition-all duration-300 ease-in-out border-b rounded-xl ${
+        className={`fixed top-0 h-16 bg-white dark:bg-[#1C1917] text-foreground flex items-center justify-between px-6 shadow-md z-10
+          transition-all duration-300 ease-in-out border-b rounded-b-xl ${
             isMobile ? "left-4 right-4" : collapsed ? "left-24 right-11" : "left-72 right-11"
           } dark:shadow-lg dark:border-muted`}
       >
