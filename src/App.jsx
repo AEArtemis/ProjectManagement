@@ -15,7 +15,7 @@ import { Help } from './components/pages/Help';
 import { TicketDetail } from './components/pages/TicketDetail';
 import Layout from './components/Layout';
 import { Signup } from './components/pages/Signup';
-
+import { ForgotPassword } from './components/pages/ForgotPassword';
 function App() {
   return (
     
@@ -23,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup/>} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         {/* Protected routes with Sidebar */}
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />

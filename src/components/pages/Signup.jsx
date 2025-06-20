@@ -46,10 +46,23 @@ export const Signup = () => {
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
 
-          <Button variant="outline" className="w-full flex items-center justify-center space-x-2">
+          {/* <Button variant="outline" className="w-full flex items-center justify-center space-x-2">
             <FcGoogle size={20} />
             <span className="text-gray-400">Sign in with Google</span>
-          </Button>
+          </Button> */}
+          <div className="flex space-x-4 item-center justify-center">
+            <button className="w-10 h-10 rounded-full overflow-hidden border hover:opacity-80 cursor-pointer">
+              <img src="/images/icons/IconGoogle.png" alt="Google" className="w-full h-full object-cover" />
+            </button>
+
+            <button className="w-10 h-10 rounded-full overflow-hidden hover:opacity-80 cursor-pointer">
+              <img src="/images/icons/IconFacebook.png" alt="Facebook" className="w-full h-full object-cover" />
+            </button>
+
+            <button className="w-10 h-10 rounded-full overflow-hidden hover:opacity-80 cursor-pointer">
+              <img src="/images/icons/IconGithub.png" alt="GitHub" className="w-full h-full object-cover" />
+            </button>
+          </div>
 
           <p className="text-center text-xs text-gray-400 mt-6">© 2025</p>
         </div>

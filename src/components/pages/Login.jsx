@@ -3,16 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const navigate = useNavigate(); // 👈 Init navigation
+  const navigate = useNavigate(); 
 
   const handleLogin = () => {
-    // TODO: Validate credentials, API call, etc.
-
-    // Redirect to /dashboard
     navigate("/dashboard");
   };
   return (
@@ -43,12 +39,12 @@ export const Login = () => {
               <Checkbox id="remember" />
               <Label htmlFor="remember" className="text-gray-400">Remember me</Label>
             </div>
-            <a href="#" className="text-sm text-gray-400 hover:underline">
+            <Link to="/forgot-password" className="text-sm text-gray-400 hover:underline">
               Forgot password?
-            </a>
+            </Link>
           </div>
 
-          <Button className="w-full bg-[#7a6650] hover:bg-[#6a5744] text-white"  onClick={handleLogin}>Sign In</Button>
+          <Button className="w-full bg-[#7a6650] hover:bg-[#6a5744] text-white cursor-pointer"  onClick={handleLogin}>Sign In</Button>
 
           <div className="flex items-center my-4">
             <div className="flex-grow border-t border-gray-300"></div>
@@ -56,11 +52,23 @@ export const Login = () => {
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
 
-          <Button variant="outline" className="w-full flex items-center justify-center space-x-2">
+          {/* <Button variant="outline" className="w-full flex items-center justify-center space-x-2">
             <FcGoogle size={20} />
             <span className="text-gray-400">Sign in with Google</span>
-          </Button>
+          </Button> */}
+          <div className="flex space-x-4 item-center justify-center">
+            <button className="w-10 h-10 rounded-full overflow-hidden border hover:opacity-80 cursor-pointer">
+              <img src="/images/icons/IconGoogle.png" alt="Google" className="w-full h-full object-cover" />
+            </button>
 
+            <button className="w-10 h-10 rounded-full overflow-hidden hover:opacity-80 cursor-pointer">
+              <img src="/images/icons/IconFacebook.png" alt="Facebook" className="w-full h-full object-cover" />
+            </button>
+
+            <button className="w-10 h-10 rounded-full overflow-hidden hover:opacity-80 cursor-pointer">
+              <img src="/images/icons/IconGithub.png" alt="GitHub" className="w-full h-full object-cover" />
+            </button>
+          </div>
           <p className="text-center text-xs text-gray-400 mt-6">© 2025</p>
         </div>
 
