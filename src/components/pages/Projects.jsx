@@ -141,7 +141,7 @@ export const Projects = () => {
               )}
             </div>
 
-            <CardContent className="pt-4 space-y-3">
+            <CardContent className="pt-2 space-y-3">
               <div className="flex justify-center">
                 <div className="w-[150px] h-[150px] rounded-lg overflow-hidden">
                   <img

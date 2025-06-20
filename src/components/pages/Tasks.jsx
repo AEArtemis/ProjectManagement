@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Link } from "react-router-dom";
 
 export const Tasks = () => {
   const [showModal, setShowModal] = useState(false);
@@ -94,7 +95,7 @@ export const Tasks = () => {
                 
               </CardContent>
             </Card> */}
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2 pb-2">
               {/* Filter Dropdown */}
               <Select defaultValue="all">
                 <SelectTrigger className="w-[130px]">
@@ -119,60 +120,62 @@ export const Tasks = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Card 1 */}
-            {filteredTasks.length > 0 ? (
+              {filteredTasks.length > 0 ? (
                 filteredTasks.map((task, i) => (
-                  <Card key={i} className="flex flex-col h-full overflow-hidden p-0">
-                    <div className="justify-between p-4 pb-0">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <span className="text-md font-bold bg-blue-100 text-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
-                            {task.id}
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <div className="relative w-11 h-11 mb-1 group">
-                            <div className="absolute inset-0 rounded-full border-2 border-violet-500 border-b-transparent border-l-transparent animate-[spin_4s_linear_infinite]" />
-                            <img
-                              src="/images/Avatar.jpg"
-                              alt="Profile"
-                              className="w-9 h-9 rounded-full absolute top-1 left-1 z-10"
-                            />
-                            <span className="absolute top-1/2 right-full mr-2 transform -translate-y-1/2 rounded bg-gray-900 text-white text-xs px-2 py-1 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100 whitespace-nowrap z-20">
-                              {task.user}
+                  <Link to="/tickets/ticket-detail">
+                    <Card key={i} className="flex flex-col h-full overflow-hidden p-0">
+                      <div className="justify-between p-4 pb-0">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <span className="text-md font-bold bg-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
+                              {task.id}
                             </span>
                           </div>
+                          <div className="flex flex-col items-center">
+                            <div className="relative w-11 h-11 mb-1 group">
+                              <div className="absolute inset-0 rounded-full border-2 border-violet-500 border-b-transparent border-l-transparent animate-[spin_4s_linear_infinite]" />
+                              <img
+                                src="/images/Avatar.jpg"
+                                alt="Profile"
+                                className="w-9 h-9 rounded-full absolute top-1 left-1 z-10"
+                              />
+                              <span className="absolute top-1/2 right-full mr-2 transform -translate-y-1/2 rounded bg-gray-900 text-white text-xs px-2 py-1 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100 whitespace-nowrap z-20">
+                                {task.user}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-left py-2">
+                          <p className="text-sm font-bold text-foreground line-clamp-4">
+                            {task.title}
+                          </p>
+                          <p className="text-sm text-foreground line-clamp-4">
+                            {task.description}
+                          </p>
+                        </div>
+                        <div className="flex items-center justify-between pt-2">
+                          <div className="flex items-center space-x-2">
+                            <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                              <Calendar className="w-3 h-3" />
+                              <span>{task.date}</span>
+                            </span>
+                            <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                              <MessageCircle className="w-3 h-3" />
+                              <span>{task.comments}</span>
+                            </span>
+                            <span className="flex items-center space-x-1 text-xs text-muted-foreground">
+                              <Paperclip className="w-3 h-3" />
+                              <span>{task.attachments}</span>
+                            </span>
+                          </div>
+                          <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
+                            Planora
+                          </span>
                         </div>
                       </div>
-                      <div className="text-left py-2">
-                        <p className="text-sm font-bold text-foreground line-clamp-4">
-                          {task.title}
-                        </p>
-                        <p className="text-sm text-foreground line-clamp-4">
-                          {task.description}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between pt-2">
-                        <div className="flex items-center space-x-2">
-                          <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                            <Calendar className="w-3 h-3" />
-                            <span>{task.date}</span>
-                          </span>
-                          <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                            <MessageCircle className="w-3 h-3" />
-                            <span>{task.comments}</span>
-                          </span>
-                          <span className="flex items-center space-x-1 text-xs text-muted-foreground">
-                            <Paperclip className="w-3 h-3" />
-                            <span>{task.attachments}</span>
-                          </span>
-                        </div>
-                        <span className="text-xs font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded text-foreground">
-                          Planora
-                        </span>
-                      </div>
-                    </div>
-                    <div className={`h-1 ${task.color} w-full`} />
-                  </Card>
+                      <div className={`h-1 ${task.color} w-full`} />
+                    </Card>
+                  </Link>
                 ))
               ) : (
                 <p className="text-sm text-muted-foreground">No tasks found.</p>

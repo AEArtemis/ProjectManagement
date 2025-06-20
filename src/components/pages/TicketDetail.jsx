@@ -1,15 +1,24 @@
 import React, {useState} from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
-import { Textarea } from "../ui/textarea";
-import { X, MessageCircle, Image, Paperclip} from "lucide-react";
+import { MessageCircle, Image, Paperclip, TicketPlus, Pencil} from "lucide-react";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const images = [
   "/images/ticket-images/sample1.jpg",
@@ -18,17 +27,20 @@ const images = [
 ];
 
 export const TicketDetail = () => {
-    // Carousel
-    const [open, setOpen] = useState(false);
-    const [commentImageModalOpen, setCommentImageModalOpen] = useState(false);
-    const [commentImages, setCommentImages] = useState([]);
+    const [showModal, setShowModal] = useState(false);
     return (
         <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6">
             {/* Header */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                 <h1 className="text-2xl font-semibold text-foreground">Ticket Detail</h1>
                 <div className="flex gap-2">
-                {/* Add buttons if needed */}
+                    <Button
+                        onClick={() => setShowModal(true)}
+                        className="flex items-center gap-2 cursor-pointer"
+                    >
+                        <Pencil size={16} />
+                        Edit Ticket
+                    </Button>
                 </div>
             </div>
 
@@ -99,17 +111,29 @@ export const TicketDetail = () => {
                     {/* Ticket Details */}
                     <Card className="col-span-1 sm:col-span-2 lg:col-span-3">
                         <CardContent className="h-full">
-                            <div className="text-left">
-                                <h4 className="text-lg font-semibold text-left pb-2">Subject</h4>
-                                <p className="text-sm text-foreground">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                    Proin volutpat sem sed ullamcorper pellentesque. Donec velit risus, blandit rutrum egestas sed, 
-                                    finibus ac diam. Aliquam erat volutpat. Suspendisse ornare tempus tristique. Integer bibendum, 
-                                    dui vel ornare imperdiet, ex velit tincidunt velit, et porttitor arcu est at magna. Quisque 
-                                    fermentum urna eget justo laoreet, rutrum condimentum turpis tempor. Sed tincidunt libero nibh,
-                                    id aliquam quam ullamcorper nec. Proin interdum sapien vel libero fermentum, quis consequat nunc luctus.
-                                    Vestibulum gravida ultricies eros, et imperdiet ante hendrerit vel. Maecenas ligula risus,
-                                    dignissim sit amet purus id, vestibulum dictum leo. Morbi vestibulum elit quis nunc congue,
-                                    vel mattis purus aliquam.</p>
+                            <div className="relative">
+                                <div className="flex justify-between items-start pb-4">
+                                    <span className="text-md font-bold bg-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
+                                      #PLN12045214
+                                    </span>
+                                    <span className="text-md font-bold bg-violet-100 text-violet-800 px-2 py-1 rounded">
+                                        Planora
+                                    </span>
+                                </div>
+                                <div className="text-left">
+                                    <h4 className="text-lg font-semibold pb-2">Subject</h4>
+                                    <p className="text-sm text-justify text-foreground">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                        Proin volutpat sem sed ullamcorper pellentesque. Donec velit risus, blandit rutrum egestas sed, 
+                                        finibus ac diam. Aliquam erat volutpat. Suspendisse ornare tempus tristique. Integer bibendum, 
+                                        dui vel ornare imperdiet, ex velit tincidunt velit, et porttitor arcu est at magna. Quisque 
+                                        fermentum urna eget justo laoreet, rutrum condimentum turpis tempor. Sed tincidunt libero nibh,
+                                        id aliquam quam ullamcorper nec. Proin interdum sapien vel libero fermentum, quis consequat nunc luctus.
+                                        Vestibulum gravida ultricies eros, et imperdiet ante hendrerit vel. Maecenas ligula risus,
+                                        dignissim sit amet purus id, vestibulum dictum leo. Morbi vestibulum elit quis nunc congue,
+                                        vel mattis purus aliquam.
+                                    </p>
+                                </div>
                             </div>
                         </CardContent>
                     </Card>
@@ -255,71 +279,116 @@ export const TicketDetail = () => {
                     </CardContent>
                 </Card>
             </div>
-
-            {/* Modal Carousel */}
-            {open && (
-                <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-                    {/* Close Button */}
-                    <Button
-                        onClick={() => setOpen(false)}
-                        className="absolute top-4 right-6 text-white"
-                        variant="ghost"
-                        size="icon"
-                    >
-                    <X className="w-8 h-8" />
-                    </Button>
-
-                    <div className="relative w-full max-w-3xl">
-                    <Carousel opts={{ loop: false }}>
-                        <CarouselContent>
-                        {images.map((src, index) => (
-                            <CarouselItem key={index} className="flex justify-center items-center">
-                            <img
-                                src={src}
-                                alt={`Slide ${index + 1}`}
-                                className="max-h-[80vh] object-contain rounded"
-                            />
-                            </CarouselItem>
-                        ))}
-                        </CarouselContent>
-
-                        <CarouselPrevious className="left-4" />
-                        <CarouselNext className="right-4" />
-                    </Carousel>
-                    </div>
-                </div>
-            )}
-            {commentImageModalOpen && (
-            <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-                <button
-                onClick={() => setCommentImageModalOpen(false)}
-                className="absolute top-4 right-6 text-white"
+            {/* Dialog Modal */}
+            <Dialog open={showModal} onOpenChange={setShowModal}>
+                <DialogContent
+                className="w-[600px] max-h-[600px] p-6"
+                onInteractOutside={(event) => event.preventDefault()}
                 >
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                </button>
+                <DialogHeader className="pb-4">
+                    <DialogTitle>Edit Ticket</DialogTitle>
+                </DialogHeader>
+                <ScrollArea className="max-h-[350px] pr-2 space-y-4 pr-5">
+                    <div className="pb-4">
+                    <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                        Project
+                    </Label>
+                    <Select>
+                        <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Project" />
+                        </SelectTrigger>
+                        <SelectContent>
+                        <SelectItem value="mark">Project BLUE</SelectItem>
+                        <SelectItem value="candy">Ecommerce Revamp</SelectItem>
+                        <SelectItem value="ace">Project Phoenix</SelectItem>
+                        <SelectItem value="mark">Accenture</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    </div>
+                    
+                    <Input
+                    type="text"
+                    placeholder="Subject"
+                    className="w-full p-2 border border-muted rounded-md focus-visible:ring-1"
+                    />
+                    <Label className="block text-sm font-medium text-muted-foreground pt-4">
+                    Description
+                    </Label>
+                    <Textarea
+                    className="w-full p-2 border border-muted rounded-md min-h-[60px] focus-visible:ring-1"
+                    rows={2}
+                    />
 
-                <div className="relative w-full max-w-3xl">
-                <Carousel loop={false}>
-                    <CarouselContent>
-                    {commentImages.map((src, index) => (
-                        <CarouselItem key={index} className="flex justify-center items-center">
-                        <img
-                            src={src}
-                            alt={`Comment Slide ${index + 1}`}
-                            className="max-h-[80vh] object-contain rounded"
-                        />
-                        </CarouselItem>
-                    ))}
-                    </CarouselContent>
+                    <div className="flex gap-4 pt-2">
+                    <div className="flex-1">
+                        <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                        Attachment
+                        </Label>
+                        <Input type="file" accept="*" />
+                    </div>
+                    <div className="flex-1 space-y-1">
+                        <label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                        Assign Date
+                        </label>
+                        <Input id="assign-date" type="date" className="w-40" />
+                    </div>
+                    </div>
 
-                    <CarouselPrevious className="left-4" />
-                    <CarouselNext className="right-4" />
-                </Carousel>
+                    <div className="flex gap-4 pt-2">
+                    <div className="flex-1">
+                        <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                        Priority
+                        </Label>
+                        <Select>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Priority" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="mark">High</SelectItem>
+                            <SelectItem value="candy">Medium</SelectItem>
+                            <SelectItem value="ace">Low</SelectItem>
+                        </SelectContent>
+                        </Select>
+                    </div>
+                    <div className="flex-1">
+                        <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                        Status
+                        </Label>
+                        <Select>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="completed">Completed</SelectItem>
+                            <SelectItem value="inProgress">In Progress</SelectItem>
+                        </SelectContent>
+                        </Select>
+                    </div>
+                    </div>
+                    <div >
+                        <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                        Assign to
+                        </Label>
+                        <Select>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Member" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="mark">Mark</SelectItem>
+                            <SelectItem value="candy">Candy</SelectItem>
+                            <SelectItem value="ace">Ace</SelectItem>
+                        </SelectContent>
+                        </Select>
+                    </div>
+                </ScrollArea>
+                <div className="flex justify-end space-x-2 pt-4">
+                    <Button variant="outline" onClick={() => setShowModal(false)}>
+                    Cancel
+                    </Button>
+                    <Button type="submit">Submit</Button>
                 </div>
-            </div>
-            )}
+                </DialogContent>
+            </Dialog>
         </div>
     );
 };

@@ -65,11 +65,11 @@ export const Dashboard = () => {
 
       {/* Header */}
       <div className="flex flex-wrap justify-between items-center gap-2">
-        <h1 className="text-2xl font-semibold text-foreground">Company Name / Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
 
       </div>
       {/* Company Image */}
-     <Card className="md:col-span-6 col-span-1 h-75 overflow-hidden rounded-xl p-2">
+     <Card className="md:col-span-6 col-span-1 h-100 overflow-hidden rounded-xl p-2">
       <img
         src="/images/company-images/CompanyImageSample.jpg"
         alt="Dashboard Banner"
@@ -79,7 +79,84 @@ export const Dashboard = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-4">
-        {[
+        <Card className="col-span-1 lg:col-span-3">
+          <CardContent className="p-2 flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center">
+              <img
+                  src="/images/icons/IconProjects.png"
+                  alt="Card 1"
+                  className="w-15 h-15 object-contain rounded-sm"
+              />
+              </div>
+              <div className="flex flex-col items-center justify-center text-left">
+                  <p className="text-md font-bold text-foreground">Projects</p>
+                  <div className="flex justify-center items-center h-full">
+                      <span className="bg-orange-100 text-orange-800 py-0.5 rounded text-xs font-medium p-2">
+                          04
+                      </span>
+                  </div>
+              </div>
+          </CardContent>
+      </Card>
+        <Card className="col-span-1 lg:col-span-3">
+          <CardContent className="p-2 flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center">
+              <img
+                  src="/images/icons/IconTasks.png"
+                  alt="Card 1"
+                  className="w-15 h-15 object-contain rounded-sm"
+              />
+              </div>
+              <div className="flex flex-col items-center justify-center text-left">
+                  <p className="text-md font-bold text-foreground">Tasks</p>
+                  <div className="flex justify-center items-center h-full">
+                      <span className="bg-orange-100 text-orange-800 py-0.5 rounded text-xs font-medium p-2">
+                          03
+                      </span>
+                  </div>
+              </div>
+          </CardContent>
+      </Card>
+      <Card className="col-span-1 lg:col-span-3">
+          <CardContent className="p-2 flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center">
+              <img
+                  src="/images/icons/IconDepartments.png"
+                  alt="Card 1"
+                  className="w-15 h-15 object-contain rounded-sm"
+              />
+              </div>
+              <div className="flex flex-col items-center justify-center text-left">
+                  <p className="text-md font-bold text-foreground">Departments</p>
+                  <div className="flex justify-center items-center h-full">
+                      <span className="bg-orange-100 text-orange-800 py-0.5 rounded text-xs font-medium p-2">
+                          01
+                      </span>
+                  </div>
+              </div>
+          </CardContent>
+      </Card>
+      
+      <Card className="col-span-1 lg:col-span-3">
+          <CardContent className="p-2 flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center">
+              <img
+                  src="/images/icons/IconUsers.png"
+                  alt="Card 1"
+                  className="w-15 h-15 object-contain rounded-sm"
+              />
+              </div>
+              <div className="flex flex-col items-center justify-center text-left">
+                  <p className="text-md font-bold text-foreground">Members</p>
+                  <div className="flex justify-center items-center h-full">
+                      <span className="bg-orange-100 text-orange-800 py-0.5 rounded text-xs font-medium p-2">
+                          04
+                      </span>
+                  </div>
+              </div>
+          </CardContent>
+      </Card>
+        {/* {[
           { label: "Total Projects", value: 24 },
           { label: "Finished Projects", value: 10 },
           { label: "Running Projects", value: 12 },
@@ -94,7 +171,7 @@ export const Dashboard = () => {
               </p>
             </CardContent>
           </Card>
-        ))}
+        ))} */}
       </div>
 
       {/* Middle Section */}
@@ -158,7 +235,6 @@ export const Dashboard = () => {
               <div className="flex gap-2 text-sm">
                 <Badge>Completed</Badge>
                 <Badge variant="outline">In Progress</Badge>
-                <Badge variant="secondary">Pending</Badge>
               </div>
             </div>
           </CardContent>
@@ -179,7 +255,7 @@ export const Dashboard = () => {
         </Card>
 
         {/* Time Tracker */}
-        <Card className="md:col-span-3 col-span-1">
+        {/* <Card className="md:col-span-3 col-span-1">
           <CardContent className="p-4">
             <h2 className="text-lg font-semibold mb-4 text-foreground">
               Time Tracker
@@ -195,10 +271,10 @@ export const Dashboard = () => {
               </Button>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
         
         {/* Team Members */}
-        <Card className="md:col-span-6 col-span-1">
+        {/* <Card className="md:col-span-6 col-span-1">
           <CardContent className="p-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="font-semibold text-lg text-foreground">Team Members</h2>
@@ -257,7 +333,7 @@ export const Dashboard = () => {
               ))}
             </ul>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );

@@ -64,6 +64,7 @@ const Navbar = () => {
     "/projects": "Projects - Planora",
     "/analytics": "Analytics - Planora",
     "/team": "Team - Planora",
+    // "/clients": "Clients - Planora", clients if needed
     "/profile": "Profile - Planora",
     "/help": "Help - Planora",
     "/settings": "Settings - Planora",
@@ -91,7 +92,10 @@ const Navbar = () => {
         {!((collapsed && !isMobile)) && <span>{label}</span>}
       </div>
       {(collapsed && !isMobile) && (
-        <span className="absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+        <span className="absolute left-full ml-5 top-1/2 -translate-y-1/2 
+          bg-primary text-primary-foreground text-xs font-medium rounded 
+          px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity 
+          z-50 whitespace-nowrap shadow-lg pointer-events-none">
           {label}
         </span>
       )}
@@ -101,23 +105,18 @@ const Navbar = () => {
   const SidebarContent = (
     <>
       <nav className="space-y-2">
-        <div className="flex h-12 mb-2 relative w-25">
-          <Link to="/dashboard" className="flex h-12 mb-2 relative w-25">
-            <img
-              src={logo}
-              alt="Planora Logo"
-              className={`absolute transition-opacity duration-300 object-contain w-24 ${
-                collapsed && !isMobile ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <img
-              src={icon}
-              alt="Planora Icon"
-              className={`absolute transition-opacity duration-300 object-contain w-9 ${
-                collapsed && !isMobile ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          </Link>
+        <div className="flex items-center h-12 mb-2 relative w-25">
+          <img
+            src={icon}
+            alt="Planora Icon"
+            className={`absolute transition-opacity duration-300 object-contain w-10`}
+          />
+          
+          {!collapsed && (
+            <span className="text-lg font-semibold text-primary-foreground transition-all duration-300 pl-14">
+              Planora
+            </span>
+          )}
         </div>
 
         {!collapsed && (
@@ -142,7 +141,7 @@ const Navbar = () => {
 
       <button
         onClick={handleLogout}
-        className="flex items-center space-x-2 hover:bg-[#0C0A09] p-2 rounded transition-all mt-6 relative group"
+        className="flex items-center space-x-2 hover:bg-[#0C0A09] p-2 rounded transition-all mt-6 relative group cursor-pointer"
       >
         <LogOut className={`${iconSize} ${iconHoverClass}`} />
         {!((collapsed && !isMobile)) && <span>Logout</span>}

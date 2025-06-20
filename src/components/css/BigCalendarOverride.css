@@ -1,0 +1,77 @@
+/* src/components/css/BigCalendarOverride.css */
+
+/* Use your existing Tailwind variable classes instead of theme() */
+.rbc-calendar,
+.rbc-time-view,
+.rbc-month-view,
+.rbc-agenda-view {
+  background-color: var(--background);
+  color: var(--foreground);
+  border-color: var(--border);
+}
+
+.rbc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+/* View toggle and nav buttons */
+.rbc-btn-group button {
+  padding: 0.25rem 0.75rem;
+  margin-right: 0.25rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.rbc-btn-group button:hover {
+  background-color: var(--primary-hover);
+  color: var(--primary-foreground);
+}
+
+.rbc-btn-group button.rbc-active {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Date label */
+.rbc-toolbar-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Event style */
+.rbc-event {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* Agenda and time grid lines */
+.rbc-day-bg,
+.rbc-time-slot {
+  background-color: transparent;
+  border-color: var(--border);
+}
+
+/* Today cell highlight */
+.rbc-today {
+  background-color: rgba(79, 70, 229, 0.1); /* example for --primary at 10% opacity */
+}
+
+/* Remove outline on focus for buttons (optional) */
+.rbc-btn-group button:focus {
+  outline: none;
+  box-shadow: none;
+}

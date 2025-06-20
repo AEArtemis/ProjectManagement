@@ -10,6 +10,7 @@ import { CalendarPlus } from 'lucide-react';
 import { Button } from '../ui/button';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import '../css/BigCalendarOverride.css'; 
 
 const locales = {
   'en-US': enUS,
@@ -38,35 +39,33 @@ const initialEvents = [
 
 export const Calendar = () => {
   const [myEvents, setMyEvents] = useState(initialEvents);
-  const [view, setView] = useState(Views.MONTH); // default view
-  const [date, setDate] = useState(new Date());  // current date
+  const [view, setView] = useState(Views.MONTH);
+  const [date, setDate] = useState(new Date());
 
   return (
-    <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6 space-y-6">
+    <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6 space-y-6 text-foreground">
       {/* Header */}
       <div className="flex flex-wrap justify-between items-center gap-2">
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Calendar</h1>
+        <h1 className="text-2xl font-semibold">Calendar</h1>
         <Button className="flex items-center gap-2 cursor-pointer">
           <CalendarPlus size={16} />
           Add Event
         </Button>
       </div>
 
-      {/* Big Calendar */}
-      <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 shadow-md overflow-hidden">
-        <BigCalendar
-          localizer={localizer}
-          events={myEvents}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 600 }}
-          views={['month', 'week', 'day', 'agenda']}
-          view={view}
-          date={date}
-          onView={setView}
-          onNavigate={(newDate) => setDate(newDate)}
-        />
-      </div>
+      {/* Calendar */}
+      <BigCalendar
+        localizer={localizer}
+        events={myEvents}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 600 }}
+        views={['month', 'week', 'day', 'agenda']}
+        view={view}
+        date={date}
+        onView={setView}
+        onNavigate={(newDate) => setDate(newDate)}
+      />
     </div>
   );
 };

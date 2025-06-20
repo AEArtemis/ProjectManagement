@@ -27,6 +27,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plus, TicketPlus, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Card } from "../ui/card";
 
 export const Tickets = () => {
   const [showModal, setShowModal] = useState(false);
@@ -39,7 +40,7 @@ export const Tickets = () => {
   const [tickets, setTickets] = useState([
     {
       id: 1,
-      ticketId: "PLNRT741362",
+      ticketId: "#PLNRT741362",
       subject: "Login issue",
       avatar: "/images/Avatar.jpg",
       assignedTo: "Mark",
@@ -48,7 +49,7 @@ export const Tickets = () => {
     },
     {
       id: 2,
-      ticketId: "PLNRT126273",
+      ticketId: "#PLNRT126273",
       subject: "Dark mode bug",
       avatar: "/images/Avatar.jpg",
       assignedTo: "Ace",
@@ -57,7 +58,7 @@ export const Tickets = () => {
     },
     {
       id: 3,
-      ticketId: "PLNRT123123",
+      ticketId: "#PLNRT123123",
       subject: "UI Feedback",
       avatar: "/images/Avatar.jpg",
       assignedTo: "Candy",
@@ -125,7 +126,7 @@ export const Tickets = () => {
         </div>
 
       </div>
-
+      
       {/* Search Bar */}
       <Input
         type="text"
@@ -137,117 +138,89 @@ export const Tickets = () => {
           setCurrentPage(1);
         }}
       />
-
-      {/* Ticket Table */}
-      <div className="rounded-lg border overflow-auto">
-        <Table className="table-auto min-w-full">
-          <TableHeader>
-            <TableRow>
-              <TableHead
-                className="cursor-pointer text-left whitespace-nowrap w-16"
-                style={{ minWidth: "64px" }}
-              >
-                Ticket ID
-              </TableHead>
-              <TableHead
-                onClick={() => handleSort("subject")}
-                className="cursor-pointer text-left w-60"
-                style={{ minWidth: "240px" }}
-              >
-                Subject
-              </TableHead>
-              <TableHead
-                onClick={() => handleSort("assignedTo")}
-                className="cursor-pointer text-left whitespace-nowrap w-40"
-                style={{ minWidth: "160px" }}
-              >
-                Assigned To
-              </TableHead>
-              <TableHead
-                onClick={() => handleSort("status")}
-                className="cursor-pointer text-left whitespace-nowrap w-32"
-                style={{ minWidth: "120px" }}
-              >
-                Status
-              </TableHead>
-              <TableHead
-                onClick={() => handleSort("date")}
-                className="cursor-pointer text-left whitespace-nowrap w-40"
-                style={{ minWidth: "120px" }}
-              >
-                Date
-              </TableHead>
-              <TableHead
-                className="text-left whitespace-nowrap w-40"
-                style={{ minWidth: "160px" }}
-              >
-                Action
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {paginatedTickets.map((ticket) => (
-              <TableRow key={ticket.id}>
-                <TableCell className="text-left whitespace-nowrap">
-                  {ticket.ticketId}
-                </TableCell>
-                <TableCell className="text-left">{ticket.subject}</TableCell>
-                <TableCell className="text-left whitespace-nowrap">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={ticket.avatar}
-                      alt={ticket.assignedTo}
-                      className="w-6 h-6 rounded-full object-cover"
-                    />
-                    <span>{ticket.assignedTo}</span>
-                  </div>
-                </TableCell>
-                <TableCell className="text-left whitespace-nowrap">
-                  {ticket.status}
-                </TableCell>
-                <TableCell className="text-left whitespace-nowrap">
-                  {ticket.date}
-                </TableCell>
-                <TableCell className="space-x-2 text-left whitespace-nowrap">
-                  <Link to="/tickets/ticket-detail">
-                    <Button size="sm" variant="outline" className="cursor-pointer">
-                      View
-                    </Button>
-                  </Link>
-                  <Button
-                    size="sm"
-                    variant="destructive"
-                    className="cursor-pointer"
-                    onClick={() => handleDelete(ticket.id)}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
+      <Card className="md:col-span-6 col-span-1 h-full flex flex-col overflow-hidden rounded-xl p-4 pt-0">
+        {/* Ticket Table */}
+        <div className="border-b overflow-auto">
+          <Table className="table-auto min-w-full border-x-0">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="text-left whitespace-nowrap w-16" style={{ minWidth: "64px" }}>
+                  Ticket ID
+                </TableHead>
+                <TableHead onClick={() => handleSort("subject")} className="cursor-pointer text-left w-60" style={{ minWidth: "240px" }}>
+                  Subject
+                </TableHead>
+                <TableHead onClick={() => handleSort("assignedTo")} className="cursor-pointer text-left whitespace-nowrap w-40" style={{ minWidth: "160px" }}>
+                  Assigned To
+                </TableHead>
+                <TableHead onClick={() => handleSort("status")} className="cursor-pointer text-left whitespace-nowrap w-32" style={{ minWidth: "120px" }}>
+                  Status
+                </TableHead>
+                <TableHead onClick={() => handleSort("date")} className="cursor-pointer text-left whitespace-nowrap w-40" style={{ minWidth: "120px" }}>
+                  Date
+                </TableHead>
+                <TableHead className="text-left whitespace-nowrap w-40" style={{ minWidth: "160px" }}>
+                  Action
+                </TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+            </TableHeader>
+            <TableBody>
+              {paginatedTickets.map((ticket) => (
+                <TableRow key={ticket.id}>
+                  <TableCell className="text-left whitespace-nowrap">{ticket.ticketId}</TableCell>
+                  <TableCell className="text-left">{ticket.subject}</TableCell>
+                  <TableCell className="text-left whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={ticket.avatar}
+                        alt={ticket.assignedTo}
+                        className="w-6 h-6 rounded-full object-cover"
+                      />
+                      <span>{ticket.assignedTo}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-left whitespace-nowrap">{ticket.status}</TableCell>
+                  <TableCell className="text-left whitespace-nowrap">{ticket.date}</TableCell>
+                  <TableCell className="space-x-2 text-left whitespace-nowrap">
+                    <Link to="/tickets/ticket-detail">
+                      <Button size="sm" variant="outline" className="cursor-pointer">
+                        View
+                      </Button>
+                    </Link>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      className="cursor-pointer"
+                      onClick={() => handleDelete(ticket.id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
 
-      {/* Pagination Controls */}
-      <div className="flex justify-center items-center space-x-4 mt-4">
-        <Button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-        >
-          Previous
-        </Button>
-        <span>
-          Page {currentPage} of {totalPages || 1}
-        </span>
-        <Button
-          disabled={currentPage === totalPages || totalPages === 0}
-          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-        >
-          Next
-        </Button>
-      </div>
-
+        {/* Pagination Controls */}
+        <div className="flex justify-center items-center space-x-4 mt-4">
+          <Button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+          >
+            Previous
+          </Button>
+          <span>
+            Page {currentPage} of {totalPages || 1}
+          </span>
+          <Button
+            disabled={currentPage === totalPages || totalPages === 0}
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+          >
+            Next
+          </Button>
+        </div>
+      </Card>
       {/* Dialog Modal */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
         <DialogContent

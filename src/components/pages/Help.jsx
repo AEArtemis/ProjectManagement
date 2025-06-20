@@ -98,7 +98,7 @@ export const Help = () => {
           </div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Phone className="w-4 h-4" />
-            <span>+1 (555) 123-4567</span>
+            <span>+63 912 3456 789</span>
           </div>
         </CardContent>
       </Card>
