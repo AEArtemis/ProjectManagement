@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageCircle, Calendar, Paperclip, ClipboardPlus } from "lucide-react";
+import { MessageCircle, Calendar, Paperclip, ClipboardPlus, Archive } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -78,15 +78,22 @@ export const Tasks = () => {
           <Button
             onClick={() => setShowModal(true)}
             className="flex items-center gap-2 cursor-pointer"
+            variant="outline"
           >
             <ClipboardPlus size={16} />
-            Add Task
+            Create Task
+          </Button>
+          <Button
+              className="flex items-center gap-2 hover:bg-red-600 hover:text-white transition-colors duration-200 cursor-pointer"
+            >
+            <Archive size={16} />
+              Archive
           </Button>
         </div>
 
       </div>
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           {/* Left: Profile Info */}
           <div className="md:col-span-8 space-y-4">
             {/* top content if needed */}
@@ -139,7 +146,7 @@ export const Tasks = () => {
                                 alt="Profile"
                                 className="w-9 h-9 rounded-full absolute top-1 left-1 z-10"
                               />
-                              <span className="absolute top-1/2 right-full mr-2 transform -translate-y-1/2 rounded bg-gray-900 text-white text-xs px-2 py-1 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100 whitespace-nowrap z-20">
+                              <span className="absolute top-1/2 right-full mr-2 transform -translate-y-1/2 rounded text-xs px-2 py-1 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100 whitespace-nowrap z-20">
                                 {task.user}
                               </span>
                             </div>
@@ -184,74 +191,79 @@ export const Tasks = () => {
           </div>
 
           {/* Right: Recent Activities pt-11 */}
-          <div className="md:col-span-4 pt-13">
+          <div className="lg:col-span-4 md:col-span-8">
             <Card className="w-full shadow-sm">
               <CardContent className="p-6 pt-0 flex flex-col gap-4">
                 <h2 className="text-lg font-semibold text-foreground">Recent Activity</h2>
-                
-                  <Card className="col-span-1">
+                  <Card className="col-span-1 rounded-none">
                     <ScrollArea className="h-[400px]">
-                      <CardContent className="flex flex-col gap-2">
-                          <div className="flex items-center gap-4">
-                              <div className="flex items-center justify-center">
-                                  <img
-                                  src="/images/Avatar.jpg"
-                                  alt="Card 1"
-                                  className="w-12 h-12 object-contain rounded-sm"
-                                  />
-                              </div>
-                              <div className="flex flex-col justify-center text-left">
-                                  <p className="text-md font-bold text-foreground">John Doe</p>
-                                  <p className="text-sm text-muted-foreground">3 hours ago</p>
-                              </div>
+                      <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+                          <div>
+                            <div className="flex items-center gap-4 pb-2">
+                                <div className="flex items-center justify-center">
+                                    <img
+                                    src="/images/Avatar.jpg"
+                                    alt="Card 1"
+                                    className="w-12 h-12 object-contain rounded-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-col justify-center text-left">
+                                    <p className="text-md font-bold text-foreground">John Doe</p>
+                                    <p className="text-sm text-muted-foreground">3 hours ago</p>
+                                </div>
+                            </div>
+                            <div className="text-left pb-2 flex items-center gap-2">
+                              <span>✅</span>
+                              <p className="text-sm font-bold text-foreground">Completed a Task</p>
+                            </div>
+
+                            {/* Divider */}
+                            <div className="h-[1px] bg-muted w-full" />
                           </div>
-                          <div className="text-left pb-2 flex items-center gap-2">
-                            <span>✅</span>
-                            <p className="text-sm font-bold text-foreground">Completed a Task</p>
+                          <div>
+                            <div className="flex items-center gap-4  pb-2">
+                                <div className="flex items-center justify-center">
+                                    <img
+                                    src="/images/Avatar.jpg"
+                                    alt="Card 1"
+                                    className="w-12 h-12 object-contain rounded-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-col justify-center text-left">
+                                    <p className="text-md font-bold text-foreground">Ace</p>
+                                    <p className="text-sm text-muted-foreground">4 hours ago</p>
+                                </div>
+                            </div>
+                            <div className="text-left pb-2 flex items-center gap-2">
+                              <span>🎫</span>
+                              <p className="text-sm font-bold text-foreground">Added a Ticket</p>
+                            </div>
+
+                            {/* Divider */}
+                            <div className="h-[1px] bg-muted w-full" />
                           </div>
 
-                          {/* Divider */}
-                          <div className="h-[1px] bg-muted w-full" />
-                          
-                          <div className="flex items-center gap-4">
-                              <div className="flex items-center justify-center">
-                                  <img
-                                  src="/images/Avatar.jpg"
-                                  alt="Card 1"
-                                  className="w-12 h-12 object-contain rounded-sm"
-                                  />
-                              </div>
-                              <div className="flex flex-col justify-center text-left">
-                                  <p className="text-md font-bold text-foreground">Ace</p>
-                                  <p className="text-sm text-muted-foreground">4 hours ago</p>
-                              </div>
+                          <div>
+                            <div className="flex items-center gap-4 pb-2">
+                                <div className="flex items-center justify-center">
+                                    <img
+                                    src="/images/Avatar.jpg"
+                                    alt="Card 1"
+                                    className="w-12 h-12 object-contain rounded-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-col justify-center text-left">
+                                    <p className="text-md font-bold text-foreground">Mark</p>
+                                    <p className="text-sm text-muted-foreground">5 hours ago</p>
+                                </div>
+                            </div>
+                            <div className="text-left pb-2 flex items-center gap-2">
+                              <span>📝</span>
+                              <p className="text-sm font-bold text-foreground">Added a Task</p>
+                            </div>
+                            {/* Divider */}
+                            <div className="h-[1px] bg-muted w-full" />
                           </div>
-                          <div className="text-left pb-2 flex items-center gap-2">
-                            <span>🎫</span>
-                            <p className="text-sm font-bold text-foreground">Added a Ticket</p>
-                          </div>
-
-                          {/* Divider */}
-                          <div className="h-[1px] bg-muted w-full" />
-                          <div className="flex items-center gap-4">
-                              <div className="flex items-center justify-center">
-                                  <img
-                                  src="/images/Avatar.jpg"
-                                  alt="Card 1"
-                                  className="w-12 h-12 object-contain rounded-sm"
-                                  />
-                              </div>
-                              <div className="flex flex-col justify-center text-left">
-                                  <p className="text-md font-bold text-foreground">Mark</p>
-                                  <p className="text-sm text-muted-foreground">5 hours ago</p>
-                              </div>
-                          </div>
-                          <div className="text-left pb-2 flex items-center gap-2">
-                            <span>📝</span>
-                            <p className="text-sm font-bold text-foreground">Added a Task</p>
-                          </div>
-                          {/* Divider */}
-                          <div className="h-[1px] bg-muted w-full" />
                       </CardContent>
                     </ScrollArea>
                   </Card>

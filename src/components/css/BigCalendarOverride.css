@@ -1,11 +1,11 @@
 /* src/components/css/BigCalendarOverride.css */
 
 /* Use your existing Tailwind variable classes instead of theme() */
-.rbc-calendar,
+.rbc-calendar
 .rbc-time-view,
 .rbc-month-view,
 .rbc-agenda-view {
-  background-color: var(--background);
+  background-color: var(--muted);
   color: var(--foreground);
   border-color: var(--border);
 }

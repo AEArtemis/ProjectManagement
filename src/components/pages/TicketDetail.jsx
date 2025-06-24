@@ -1,11 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardContent } from "@/components/ui/card";
-import { MessageCircle, Image, Paperclip, TicketPlus, Pencil} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -14,20 +20,58 @@ import {
 } from "@/components/ui/dialog";
 import {
   Select,
+  SelectTrigger,
   SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  MessageCircle,
+  Paperclip,
+  Image,
+  Pencil,
+  X,
+} from "lucide-react";
 
 const images = [
   "/images/ticket-images/sample1.jpg",
   "/images/ticket-images/sample2.jpg",
   "/images/ticket-images/sample3.jpg",
+  "/images/ticket-images/sample3.jpg",
+  "/images/ticket-images/sample3.jpg",
 ];
 
 export const TicketDetail = () => {
+    // Ticket Attached
     const [showModal, setShowModal] = useState(false);
+    const [openAttached, setOpenAttached] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // comments
+    const [commentImageModalOpen, setCommentImageModalOpen] = useState(false);
+    const [commentImages, setCommentImages] = useState([]);
+    const [selectedCommentId, setSelectedCommentId] = useState(null);
+    const [startIndex, setStartIndex] = useState(0);
+    const comments = 
+    [
+        {
+            id: 1,
+            name: "John Doe",
+            avatar: "/images/Avatar.jpg",
+            comment: "Lorem ipsum...",
+            images: ["/images/ticket-images/sample3.jpg", "/images/ticket-images/sample2.jpg", "/images/ticket-images/sample1.jpg"],
+            duration: "3 hours ago",
+        },
+        {
+            id: 2,
+            name: "Mike Doe",
+            avatar: "/images/Avatar.jpg",
+            comment: "Lorem ipsum...",
+            images: ["/images/ticket-images/sample1.jpg", "/images/ticket-images/sample2.jpg"],
+            duration: "4 hours ago",
+        },
+    ];
+
     return (
         <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6">
             {/* Header */}
@@ -80,7 +124,7 @@ export const TicketDetail = () => {
                             </div>
                             <div className="flex flex-col items-center justify-center text-center">
                                 <p className="text-md font-bold text-foreground">Created By</p>
-                                <span className="text-sm font-medium bg-blue-100 text-blue-800 py-0.5 rounded p-2 w-30">
+                                <span className="text-xs font-medium bg-blue-100 text-blue-800 py-0.5 rounded p-2 w-30">
                                     John Doe 
                                 </span>
                             </div> 
@@ -139,9 +183,78 @@ export const TicketDetail = () => {
                     </Card>
                     <Card className="col-span-1 sm:col-span-2 lg:col-span-3">
                         <CardContent className="h-full">
-                            <h4 className="text-lg font-semibold text-left mb-4">Image Attached</h4>
-
-                            {/* Use flex-wrap and gap, with responsive widths */}
+                            <h4 className="text-lg font-semibold mb-4">File Attached</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-max">
+                                <Card className="col-span-1 rounded-none">
+                                    <CardContent className="pl-2 pr-2 flex gap-3 items-center">
+                                        <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <img
+                                            src="/images/icons/IconFile.gif"
+                                            alt="File Icon"
+                                            className="w-12 h-12 object-contain rounded-sm"
+                                        />
+                                        </div>
+                                        <div className="flex flex-col justify-center flex-1 overflow-hidden">
+                                        <p className="text-xs font-semibold text-left text-foreground truncate whitespace-nowrap overflow-hidden">
+                                            Sample_File1.pdf
+                                        </p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                                <Card className="col-span-1 rounded-none">
+                                    <CardContent className="pl-2 pr-2 flex gap-3 items-center">
+                                        <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <img
+                                            src="/images/icons/IconFile.gif"
+                                            alt="File Icon"
+                                            className="w-12 h-12 object-contain rounded-sm"
+                                        />
+                                        </div>
+                                        <div className="flex flex-col justify-center flex-1 overflow-hidden">
+                                        <p className="text-xs font-semibold text-left text-foreground truncate whitespace-nowrap overflow-hidden">
+                                            Sample_File2.pdf
+                                        </p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                                <Card className="col-span-1 rounded-none">
+                                    <CardContent className="pl-2 pr-2 flex gap-3 items-center">
+                                        <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <img
+                                            src="/images/icons/IconFile.gif"
+                                            alt="File Icon"
+                                            className="w-12 h-12 object-contain rounded-sm"
+                                        />
+                                        </div>
+                                        <div className="flex flex-col justify-center flex-1 overflow-hidden">
+                                        <p className="text-xs font-semibold text-left text-foreground truncate whitespace-nowrap overflow-hidden">
+                                            Sample_File3.pdf
+                                        </p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                                <Card className="col-span-1 rounded-none">
+                                    <CardContent className="pl-2 pr-2 flex gap-3 items-center">
+                                        <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                        <img
+                                            src="/images/icons/IconFile.gif"
+                                            alt="File Icon"
+                                            className="w-12 h-12 object-contain rounded-sm"
+                                        />
+                                        </div>
+                                        <div className="flex flex-col justify-center flex-1 overflow-hidden">
+                                        <p className="text-xs font-semibold text-left text-foreground truncate whitespace-nowrap overflow-hidden">
+                                            Sample_File4.pdf
+                                        </p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <Card className="col-span-1 sm:col-span-2 lg:col-span-3">
+                        <CardContent className="h-full">
+                            <h4 className="text-lg font-semibold text-middle mb-4">Image Attached</h4>
                             <div className="flex flex-wrap gap-4 justify-center">
                             {images.map((src, index) => (
                                 <img
@@ -149,28 +262,21 @@ export const TicketDetail = () => {
                                 src={src}
                                 alt={`Attachment ${index + 1}`}
                                 className="w-auto h-auto rounded-md cursor-pointer object-cover"
-                                onClick={() => setOpen(true)}
+                                onClick={() => {
+                                    setCurrentIndex(index);
+                                    setOpenAttached(true);
+                                }}
                                 />
                             ))}
                             </div>
                         </CardContent>
                     </Card>
-                    {/* <div className="col-span-1 sm:col-span-2 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Card>
-                            <CardContent className="h-full p-4">
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardContent className="h-full p-4">
-                            </CardContent>
-                        </Card>
-                    </div> */}
                 </div>
 
                 {/* Right Sidebar Card */}
                 <Card className="shadow-md self-start">
-                    <CardContent className="p-4 space-y-2">
-                        <h4 className="text-lg font-semibold text-left">Ticket Chat</h4>
+                    <CardContent className="pl-3 pr-3 space-y-2">
+                        <h4 className="text-lg font-semibold">Ticket Chat</h4>
                         <Card className="col-span-1 rounded-none shadow-none">
                             <CardContent className="flex flex-col gap-2 h-full">
                                 <div className="flex items-center gap-4">
@@ -188,93 +294,94 @@ export const TicketDetail = () => {
                                 </div>
 
                                 {/* Divider */}
-                                <div className="h-[1px] bg-muted w-full" />
+                                <div className="h-[2px] bg-muted w-full" />
 
                                 <div className="text-left">
                                     <p className="text-sm text-foreground">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum enim vitae turpis fringilla maximus. Nulla egestas tempus mauris non rutrum.</p>
                                 </div>
 
-                                <p className="flex items-center text-sm font-bold text-foreground pt-4 text-left gap-2">
-                                    <MessageCircle className="w-5 h-5" />
-                                    Comments (1)
+                                <p className="flex items-center text-sm font-semibold text-foreground pt-4 text-left gap-2">
+                                    <MessageCircle className="w-4 h-4" />
+                                    Comments (2)
                                 </p>
 
-                                {/* Divider */}
-                                <div className="h-[1px] bg-muted w-full" />
-                                {/* Replies */}
-                                <div className="flex items-center gap-4">
-                                    <div className="flex items-center justify-center">
-                                        <img
-                                        src="/images/Avatar.jpg"
-                                        alt="Card 1"
-                                        className="w-12 h-12 object-contain rounded-sm"
-                                        />
-                                    </div>
-                                    <div className="flex flex-col justify-center text-left">
-                                        <p className="text-md font-bold text-foreground">John Doe</p>
-                                        <p className="text-sm text-muted-foreground">3 hours ago</p>
-                                    </div>
-                                    </div>
+                                {comments.map((comment) => (
+                                    <div key={comment.id} className="pl-2 pt-2">
+                                        {/* Divider */}
+                                        <div className="h-[2px] bg-muted w-full" />
 
-                                    <div className="text-left">
-                                    {/* Small images section */}
-                                        <div className="flex gap-2 mb-2">
-                                        {["/images/Avatar.jpg", "/images/favicon.png", "/images/ProjectImage.png"].map((src, index) => (
-                                            <img
-                                            key={index}
-                                            src={src}
-                                            alt={`Comment Image ${index + 1}`}
-                                            className="w-16 h-16 object-cover rounded cursor-pointer border"
-                                            onClick={() => {
-                                                setCommentImages([
-                                                "/images/Avatar.jpg",
-                                                "/images/favicon.png",
-                                                "/images/ProjectImage.png",
-                                                ]);
-                                                setCommentImageModalOpen(true);
-                                            }}
-                                            />
-                                        ))}
+                                        {/* User Info */}
+                                        <div className="flex items-center gap-4 pb-4 pt-2">
+                                            <div className="flex items-center justify-center">
+                                                <img
+                                                src={comment.avatar}
+                                                alt={`${comment.name} Avatar`}
+                                                className="w-10 h-10 object-cover rounded-sm"
+                                                />
+                                            </div>
+                                            <div className="flex flex-col justify-center text-left">
+                                                <p className="text-sm font-bold text-foreground">{comment.name}</p>
+                                                <p className="text-xs text-muted-foreground">{comment.duration}</p>
+                                            </div>
                                         </div>
 
-                                        {/* Paragraph text */}
-                                        <p className="text-sm text-foreground">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum enim vitae turpis fringilla maximus. Nulla egestas tempus mauris non rutrum.
-                                        </p>
+                                        {/* Comment Images */}
+                                        <div className="text-left">
+                                        <div className="flex gap-2 mb-2">
+                                            {comment.images.map((src, index) => (
+                                                <img
+                                                    key={index}
+                                                    src={src}
+                                                    alt={`Comment Image ${index + 1}`}
+                                                    className="w-16 h-16 object-cover rounded cursor-pointer border"
+                                                    onClick={() => {
+                                                    setCommentImages(comment.images);
+                                                    setStartIndex(index); // show the clicked image
+                                                    setSelectedCommentId(comment.id);
+                                                    setCommentImageModalOpen(true);
+                                                    }}
+                                                />
+                                            ))}
+                                        </div>
+
+                                        {/* Comment Text */}
+                                        <p className="text-xs text-foreground">{comment.comment}</p>
+                                        </div>
                                     </div>
+                                ))}
 
                             </CardContent>
                         </Card>
                         <Card className="shadow-md self-start rounded-none shadow-none">
-                        <CardContent className="space-y-2">
-                            <Textarea
-                            rows={20}
-                            placeholder="Message"
-                            className="focus-visible:ring-1 h-30
-                            bg-background text-foreground rounded-none"
-                            />
+                            <CardContent className="space-y-2">
+                                <Textarea
+                                rows={20}
+                                placeholder="Message"
+                                className="focus-visible:ring-1 h-30
+                                bg-background text-foreground"
+                                />
 
-                            {/* Icons + Send */}
-                            <div className="flex items-center justify-between pt-2">
-                            <div className="flex gap-4">
-                                <button
-                                type="button"
-                                className="text-gray-500 hover:text-black transition-colors"
-                                >
-                                <Image className="w-4 h-4" />
-                                </button>
+                                {/* Icons + Send */}
+                                <div className="flex items-center justify-between pt-2">
+                                <div className="flex gap-4">
+                                    <button
+                                    type="button"
+                                    className="text-gray-500 hover:text-black transition-colors"
+                                    >
+                                    <Image className="w-4 h-4" />
+                                    </button>
 
-                                <button
-                                type="button"
-                                className="text-gray-500 hover:text-black transition-colors"
-                                >
-                                <Paperclip className="w-4 h-4" />
-                                </button>
-                            </div>
+                                    <button
+                                    type="button"
+                                    className="text-gray-500 hover:text-black transition-colors"
+                                    >
+                                    <Paperclip className="w-4 h-4" />
+                                    </button>
+                                </div>
 
-                            <Button className="px-6">Send</Button>
-                            </div>
-                        </CardContent>
+                                <Button className="px-6">Send</Button>
+                                </div>
+                            </CardContent>
                         </Card>
                     </CardContent>
                 </Card>
@@ -295,13 +402,13 @@ export const TicketDetail = () => {
                     </Label>
                     <Select>
                         <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Project" />
+                            <SelectValue placeholder="Project" />
                         </SelectTrigger>
                         <SelectContent>
-                        <SelectItem value="mark">Project BLUE</SelectItem>
-                        <SelectItem value="candy">Ecommerce Revamp</SelectItem>
-                        <SelectItem value="ace">Project Phoenix</SelectItem>
-                        <SelectItem value="mark">Accenture</SelectItem>
+                            <SelectItem value="mark">Project BLUE</SelectItem>
+                            <SelectItem value="candy">Ecommerce Revamp</SelectItem>
+                            <SelectItem value="ace">Project Phoenix</SelectItem>
+                            <SelectItem value="mark">Accenture</SelectItem>
                         </SelectContent>
                     </Select>
                     </div>
@@ -312,7 +419,7 @@ export const TicketDetail = () => {
                     className="w-full p-2 border border-muted rounded-md focus-visible:ring-1"
                     />
                     <Label className="block text-sm font-medium text-muted-foreground pt-4">
-                    Description
+                        Description
                     </Label>
                     <Textarea
                     className="w-full p-2 border border-muted rounded-md min-h-[60px] focus-visible:ring-1"
@@ -320,50 +427,50 @@ export const TicketDetail = () => {
                     />
 
                     <div className="flex gap-4 pt-2">
-                    <div className="flex-1">
-                        <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
-                        Attachment
-                        </Label>
-                        <Input type="file" accept="*" />
-                    </div>
-                    <div className="flex-1 space-y-1">
-                        <label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
-                        Assign Date
-                        </label>
-                        <Input id="assign-date" type="date" className="w-40" />
-                    </div>
+                        <div className="flex-1">
+                            <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                            Attachment
+                            </Label>
+                            <Input type="file" accept="*" />
+                        </div>
+                        <div className="flex-1 space-y-1">
+                            <label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                            Assign Date
+                            </label>
+                            <Input id="assign-date" type="date" className="w-40" />
+                        </div>
                     </div>
 
                     <div className="flex gap-4 pt-2">
-                    <div className="flex-1">
-                        <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
-                        Priority
-                        </Label>
-                        <Select>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Priority" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="mark">High</SelectItem>
-                            <SelectItem value="candy">Medium</SelectItem>
-                            <SelectItem value="ace">Low</SelectItem>
-                        </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="flex-1">
-                        <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
-                        Status
-                        </Label>
-                        <Select>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Status" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="completed">Completed</SelectItem>
-                            <SelectItem value="inProgress">In Progress</SelectItem>
-                        </SelectContent>
-                        </Select>
-                    </div>
+                        <div className="flex-1">
+                            <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                            Priority
+                            </Label>
+                            <Select>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select Priority" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="mark">High</SelectItem>
+                                <SelectItem value="candy">Medium</SelectItem>
+                                <SelectItem value="ace">Low</SelectItem>
+                            </SelectContent>
+                            </Select>
+                        </div>
+                        <div className="flex-1">
+                            <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                            Status
+                            </Label>
+                            <Select>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select Status" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="completed">Completed</SelectItem>
+                                <SelectItem value="inProgress">In Progress</SelectItem>
+                            </SelectContent>
+                            </Select>
+                        </div>
                     </div>
                     <div >
                         <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
@@ -383,12 +490,106 @@ export const TicketDetail = () => {
                 </ScrollArea>
                 <div className="flex justify-end space-x-2 pt-4">
                     <Button variant="outline" onClick={() => setShowModal(false)}>
-                    Cancel
+                        Cancel
                     </Button>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">
+                        Submit
+                    </Button>
                 </div>
                 </DialogContent>
             </Dialog>
+
+            {/* ticket images modal */}
+            {openAttached && (
+                <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+                    {/* Close Button */}
+                    <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
+                    <Button
+                        onClick={() => setOpenAttached(false)}
+                        variant="ghost"
+                        size="icon"
+                        className="text-white hover:bg-white/10"
+                    >
+                        <X className="w-8 h-8" />
+                    </Button>
+                    </div>
+
+                    {/* Centered Carousel */}
+                    <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6">
+                        <div className="max-w-full max-h-full w-full h-full flex items-center justify-center">
+                            <Carousel
+                            key={currentIndex}
+                            opts={{ loop: true, startIndex: currentIndex }}
+                            className="w-full h-full flex items-center justify-center"
+                            >
+                            <CarouselContent className="w-full h-full">
+                                {images.map((src, index) => (
+                                <CarouselItem
+                                    key={index}
+                                    className="flex items-center justify-center h-full"
+                                >
+                                    <img
+                                    src={src}
+                                    alt={`Slide ${index + 1}`}
+                                    className="max-w-[100vw] max-h-[90vh] object-contain"
+                                    />
+                                </CarouselItem>
+                                ))}
+                            </CarouselContent>
+
+                            <CarouselPrevious className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-foreground z-10" />
+                            <CarouselNext className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-foreground z-10" />
+                            </Carousel>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* comment modal */}
+            {commentImageModalOpen && (
+                <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+                    {/* Close Button */}
+                    <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
+                    <Button
+                        onClick={() => setCommentImageModalOpen(false)}
+                        variant="ghost"
+                        size="icon"
+                        className="text-white hover:bg-white/10"
+                    >
+                        <X className="w-8 h-8" />
+                    </Button>
+                    </div>
+
+                    {/* Carousel Content */}
+                    <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6">
+                    <div className="max-w-full max-h-full w-full h-full flex items-center justify-center">
+                        <Carousel
+                        key={`${selectedCommentId}-${startIndex}`}
+                        opts={{ loop: true, startIndex }}
+                        className="w-full h-full flex items-center justify-center"
+                        >
+                        <CarouselContent className="w-full h-full">
+                            {commentImages.map((src, index) => (
+                            <CarouselItem
+                                key={index}
+                                className="flex items-center justify-center h-full"
+                            >
+                                <img
+                                src={src}
+                                alt={`Comment ${selectedCommentId} Image ${index + 1}`}
+                                className="max-w-[90vw] max-h-[90vh] object-contain rounded"
+                                />
+                            </CarouselItem>
+                            ))}
+                        </CarouselContent>
+
+                        <CarouselPrevious className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white z-10" />
+                        <CarouselNext className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white z-10" />
+                        </Carousel>
+                    </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

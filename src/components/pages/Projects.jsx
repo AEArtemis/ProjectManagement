@@ -20,9 +20,16 @@ import {
   CommandGroup,
   CommandItem
 } from "@/components/ui/command";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Hourglass, MoreVertical, Plus, ToyBrick } from "lucide-react";
+import { Archive, Hourglass, MoreVertical, Plus, ToyBrick } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -69,15 +76,57 @@ export const Projects = () => {
     { id: 6, name: "Ace" },
   ];
 
+  // projects & search
+  const [searchTerm, setSearchTerm] = useState("");   
+  const projects = [
+    {
+      id: 1,
+      name: "Planora",
+      members: 3,
+      duration: "10 Months",
+      image: "/images/ProjectImage.png",
+    },
+    {
+      id: 2,
+      name: "Ecommerce Revamp",
+      members: 5,
+      duration: "8 Months",
+      image: "/images/ProjectImage.png",
+    },
+    {
+      id: 3,
+      name: "Project Phoenix",
+      members: 2,
+      duration: "6 Months",
+      image: "/images/ProjectImage.png",
+    },
+    {
+      id: 4,
+      name: "Accenture",
+      members: 4,
+      duration: "12 Months",
+      image: "/images/ProjectImage.png",
+    },
+  ];
+
+  const filteredProjects = projects.filter((p) =>
+    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className="min-h-screen bg-background pt-20 px-4 sm:px-6 lg:px-8 pb-6 space-y-6">
       <div className="flex flex-wrap justify-between items-center gap-2">
         <h1 className="text-2xl font-semibold text-foreground">Projects</h1>
         <div className="flex gap-2">
           {/* <Button variant="outline">Import Data</Button> */}
-          <Button onClick={() => setShowModal(true)} className="flex items-center gap-2 cursor-pointer">
+          <Button className="flex items-center gap-2 cursor-pointer" variant="outline" onClick={() => setShowModal(true)} >
             <ToyBrick size={16} />
             Create Project
+          </Button>
+          <Button
+              className="flex items-center gap-2 hover:bg-red-600 hover:text-white transition-colors duration-200 cursor-pointer"
+            >
+            <Archive size={16} />
+              Archive
           </Button>
         </div>
       </div>
@@ -95,86 +144,66 @@ export const Projects = () => {
         {/* Search Input */}
         <Input
           type="text"
-          placeholder="Search..."
+          placeholder="Search project name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="w-120 border border-border bg-background text-foreground px-2 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {[1, 2, 3, 4].map((i, index) => (
-          <Card key={i} className="shadow-sm relative overflow-visible">
-            <div className="absolute top-2 right-2 z-10">
-              <button
-                onClick={() => toggleMenu(index)}
-                className="p-1 rounded hover:bg-muted transition"
-              >
-                <MoreVertical className="w-5 h-5 text-muted-foreground" />
-              </button>
-
-              {openMenuIndex === index && (
-                <div className="absolute right-0 mt-2 w-40 bg-background border border-muted rounded shadow z-20">
-                  <button
-                    onClick={() => {
-                      setShowModalMember(true);
-                      setOpenMenuIndex(null);
-                    }}
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-muted"
-                  >
-                    Add Member
-                  </button>
-                  <button
-                    onClick={() => setShowModal(true)}
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-muted"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-muted"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-muted"
-                  >
-                    Archive
-                  </button>
-                </div>
-              )}
-            </div>
-
+        {filteredProjects.map((project, index) => (
+          <Card key={project.id} className="shadow-sm relative overflow-visible">
+            {/* Top Right Menu */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="absolute top-2 right-2 z-10 p-1 rounded hover:bg-muted transition">
+                  <MoreVertical className="w-5 h-5 text-muted-foreground" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-40" align="end">
+                <DropdownMenuItem
+                  onClick={() => {
+                    setShowModalMember(true);
+                  }}
+                >
+                  Add Member
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => {
+                    setShowModal(true);
+                  }}
+                >
+                  Edit
+                </DropdownMenuItem>
+                <DropdownMenuItem>Delete</DropdownMenuItem>
+                <DropdownMenuItem>Archive</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            {/* Card Content */}
             <CardContent className="pt-2 space-y-3">
               <div className="flex justify-center">
                 <div className="w-[150px] h-[150px] rounded-lg overflow-hidden">
                   <img
-                    src="/images/ProjectImage.png"
-                    alt="Project Thumbnail"
+                    src={project.image}
+                    alt={`${project.name} Thumbnail`}
                     className="object-contain w-full h-full"
                   />
                 </div>
               </div>
               <div>
-                <h5 className="text-lg font-medium text-foreground">
-                  {["Planora", "Ecommerce Revamp", "Project Phoenix", "Accenture"][i - 1]}
-                </h5>
+                <h5 className="text-lg font-medium text-foreground">{project.name}</h5>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center -space-x-2">
-                  <img
-                    src="/images/Avatar.jpg"
-                    className="w-8 h-8 rounded-full border-2 border-background"
-                    alt="User A"
-                  />
-                  <img
-                    src="/images/Avatar.jpg"
-                    className="w-8 h-8 rounded-full border-2 border-background"
-                    alt="User B"
-                  />
+                  <img src="/images/Avatar.jpg" className="w-8 h-8 rounded-full border-2 border-background" />
+                  <img src="/images/Avatar.jpg" className="w-8 h-8 rounded-full border-2 border-background" />
                   <span className="text-xs font-medium text-muted-foreground pl-2">
-                    +{[3, 5, 2, 4][i - 1]} more
+                    +{project.members} more
                   </span>
                 </div>
                 <span className="flex items-center space-x-1 text-xs text-muted-foreground">
                   <Hourglass className="w-3 h-3" />
-                  <span>10 Months</span>
+                  <span>{project.duration}</span>
                 </span>
               </div>
               <div className="w-full bg-muted h-2 rounded-full overflow-hidden">
@@ -182,6 +211,7 @@ export const Projects = () => {
               </div>
             </CardContent>
           </Card>
+
         ))}
       </div>
 

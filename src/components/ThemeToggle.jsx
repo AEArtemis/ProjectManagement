@@ -19,7 +19,7 @@ export function ThemeToggle() {
 
   return (
     <div className="flex items-center justify-center py-4">
-      <label className="relative inline-block w-[38px] h-[20px] cursor-pointer">
+      <label className="relative inline-block w-[38px] h-[20px] cursor-pointer border rounded-xl">
         <input
           type="checkbox"
           className="peer hidden"

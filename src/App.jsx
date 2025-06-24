@@ -16,6 +16,7 @@ import { TicketDetail } from './components/pages/TicketDetail';
 import Layout from './components/Layout';
 import { Signup } from './components/pages/Signup';
 import { ForgotPassword } from './components/pages/ForgotPassword';
+import { Departments } from './components/pages/Departments';
 function App() {
   return (
     
@@ -31,6 +32,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/departments" element={<Departments />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/tickets" element={<Tickets />} />

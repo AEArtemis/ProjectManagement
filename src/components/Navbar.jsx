@@ -13,7 +13,9 @@ import {
   LifeBuoy,
   BriefcaseBusiness,
   Tickets,
-  User
+  User,
+  Building,
+  Building2
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -113,9 +115,12 @@ const Navbar = () => {
           />
           
           {!collapsed && (
-            <span className="text-lg font-semibold text-primary-foreground transition-all duration-300 pl-14">
+            <span style={{ fontFamily: '"Caprasimo", cursive' }} className="text-2xl pl-14">
               Planora
             </span>
+          // <span className="font-lubrifont text-lg font-semibold text-white transition-all duration-300 pl-14">
+          //   Planora
+          // </span>
           )}
         </div>
 
@@ -127,7 +132,7 @@ const Navbar = () => {
         <NavItem to="/tickets" icon={Tickets} label="Tickets" />
         <NavItem to="/calendar" icon={Calendar} label="Calendar" />
         <NavItem to="/projects" icon={BriefcaseBusiness} label="Projects" />
-        {/* <NavItem to="/analytics" icon={ChartColumnBig} label="Analytics" /> */}
+        <NavItem to="/departments" icon={Building2} label="Departments" />
         <NavItem to="/team" icon={UsersRound} label="Team" />
 
 
@@ -198,21 +203,21 @@ const Navbar = () => {
                 {/* Dot indicator for new notifications */}
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
               </button>
-            </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-85 mt-2">
-                <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="cursor-pointer">
-                  🔔 New comment on your post
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  📦 Your report is ready to view
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  🎉 Welcome to the dashboard!
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-85 mt-2">
+                  <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="cursor-pointer">
+                    🔔 New comment on your post
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer">
+                    📦 Your report is ready to view
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer">
+                    🎉 Welcome to the dashboard!
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
           {/* User info */}
           <Link to="/profile"> 

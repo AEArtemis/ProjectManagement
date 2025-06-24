@@ -11,7 +11,7 @@ export const Signup = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#f6f2f3] flex items-center justify-center p-4">
-      <div className="bg-white flex flex-col md:flex-row rounded-2xl shadow-lg overflow-hidden max-w-4xl w-full h-[500px]">
+      <div className="bg-white flex flex-col md:flex-row rounded-2xl shadow-lg overflow-hidden max-w-4xl w-full h-[520px]">
         {/* Left Side - Form */}
         <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
           <h2 className="text-3xl font-bold text-[#7a6650]">Sign Up</h2>

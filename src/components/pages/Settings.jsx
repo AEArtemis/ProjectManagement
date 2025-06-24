@@ -41,22 +41,22 @@ export const Settings = () => {
         <p className='text-xs text-left pb-4'>Manage your passwords, login preferences and recovery methods.</p>
 
         <div className='border rounded-lg'>
-          <button class="w-full border-none shadow-none text-left py-2 pl-2 rounded-md text-gray-900 dark:text-gray-100 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition" type="button" aria-label="Change Password">
+          <Button class="w-full border-none shadow-none text-left py-2 pl-2 rounded-md text-gray-900 dark:text-gray-100 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition" type="button" aria-label="Change Password">
             Change Password
-          </button>
-           <button class="w-full border-none shadow-none text-left py-2 pl-2 rounded-md text-gray-900 dark:text-gray-100 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition" type="button" aria-label="Change Password">
+          </Button>
+           <Button class="w-full border-none shadow-none text-left py-2 pl-2 rounded-md text-gray-900 dark:text-gray-100 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition" type="button" aria-label="Change Password">
             Two-factor Authentication
-          </button>
+          </Button>
         </div>
         <h2 className="text-sm font-semibold text-foreground text-left pt-4">Security Checks</h2>
         <p className='text-xs text-left pb-4'>Review security issues</p>
         <div className='border rounded-lg'>
-          <button class="w-full border-none shadow-none text-left py-2 pl-2 rounded-md text-gray-900 dark:text-gray-100 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition" type="button" aria-label="Change Password">
+          <Button class="w-full border-none shadow-none text-left py-2 pl-2 rounded-md text-gray-900 dark:text-gray-100 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition" type="button" aria-label="Change Password">
             Where you're logged in.
-          </button>
-           <button class="w-full border-none shadow-none text-left py-2 pl-2 rounded-md text-gray-900 dark:text-gray-100 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition" type="button" aria-label="Change Password">
+          </Button>
+           <Button class="w-full border-none shadow-none text-left py-2 pl-2 rounded-md text-gray-900 dark:text-gray-100 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition" type="button" aria-label="Change Password">
             Login Alerts
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -67,7 +67,7 @@ export const Settings = () => {
           Help us improve your experience. Let us know your thoughts.
         </p>
         <Textarea placeholder="Your feedback..." className="min-h-[100px]" />
-        <Button className="mt-2">Submit Feedback</Button>
+        <Button className="mt-2 cursor-pointer ">Submit Feedback</Button>
       </div>
 
       {/* Danger Zone */}
@@ -76,7 +76,7 @@ export const Settings = () => {
         <p className="text-sm text-muted-foreground">
           Deleting your account is irreversible. Please be certain.
         </p>
-        <Button variant="destructive">Delete Account</Button>
+        <Button className="cursor-pointer" variant="destructive">Delete Account</Button>
       </div>
     </div>
   );

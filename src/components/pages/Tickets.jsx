@@ -16,6 +16,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Link } from "react-router-dom";
+import { Card } from "../ui/card";
 import {
   Table,
   TableBody,
@@ -24,10 +27,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Plus, TicketPlus, Trash2 } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Card } from "../ui/card";
+
+import { Archive, Plus, TicketPlus, Trash2 } from "lucide-react";
+
 
 export const Tickets = () => {
   const [showModal, setShowModal] = useState(false);
@@ -120,8 +122,8 @@ export const Tickets = () => {
           <Button
             className="flex items-center gap-2 hover:bg-red-600 hover:text-white transition-colors duration-200 cursor-pointer"
           >
-            <Trash2 size={16} />
-            Recycle
+            <Archive size={16} />
+            Archive
           </Button>
         </div>
 
@@ -269,9 +271,9 @@ export const Tickets = () => {
                 <Input type="file" accept="*" />
               </div>
               <div className="flex-1 space-y-1">
-                <label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
                   Assign Date
-                </label>
+                </Label>
                 <Input id="assign-date" type="date" className="w-40" />
               </div>
             </div>
@@ -308,20 +310,20 @@ export const Tickets = () => {
               </div>
             </div>
             <div >
-                <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
-                  Assign to
-                </Label>
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select Member" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="mark">Mark</SelectItem>
-                    <SelectItem value="candy">Candy</SelectItem>
-                    <SelectItem value="ace">Ace</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              <Label className="block text-sm font-medium text-muted-foreground mb-1 pt-2">
+                Assign to
+              </Label>
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Member" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="mark">Mark</SelectItem>
+                  <SelectItem value="candy">Candy</SelectItem>
+                  <SelectItem value="ace">Ace</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </ScrollArea>
           <div className="flex justify-end space-x-2 pt-4">
             <Button variant="outline" onClick={() => setShowModal(false)}>

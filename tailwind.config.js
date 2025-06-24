@@ -14,6 +14,10 @@ export default {
         background: '#fafaf9', // stone-50
         foreground: '#1c1917', // stone-900
       },
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+        caprasimo: ['Caprasimo', 'cursive'], 
+      }
     },
   },
   plugins: [],

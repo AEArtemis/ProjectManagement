@@ -30,7 +30,7 @@ export const ForgotPassword = () => {
     if (!newPassword || !confirmPassword) return alert("Please fill all fields");
     if (newPassword !== confirmPassword) return alert("Passwords do not match");
     console.log("Password reset for:", email);
-    navigate("/login");
+    navigate("/");
   };
 
   const handleBack = () => {
@@ -43,7 +43,7 @@ export const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#f6f2f3] flex items-center justify-center p-4">
-      <div className="bg-white flex flex-col md:flex-row rounded-2xl shadow-lg overflow-hidden max-w-4xl w-full h-[500px]">
+      <div className="bg-white flex flex-col md:flex-row rounded-2xl shadow-lg overflow-hidden max-w-4xl w-full h-[520px]">
         <div className="relative w-full md:w-1/2 p-10 flex flex-col justify-center">
             <Button
             onClick={handleBack}
@@ -61,7 +61,7 @@ export const ForgotPassword = () => {
           {step === 1 && (
             <>
               <div className="mb-4">
-                <Label htmlFor="email" className="text-gray-400">Email</Label>
+                <Label htmlFor="email" className="text-gray-400 pb-2">Email</Label>
                 <Input
                   type="email"
                   id="email"
@@ -83,7 +83,7 @@ export const ForgotPassword = () => {
           {step === 2 && (
             <>
               <div className="mb-4">
-                <Label htmlFor="otp" className="text-gray-400">OTP</Label>
+                <Label htmlFor="otp" className="text-gray-400 pb-2">OTP</Label>
                 <Input
                   type="text"
                   id="otp"
@@ -105,7 +105,7 @@ export const ForgotPassword = () => {
           {step === 3 && (
             <>
               <div className="mb-4">
-                <Label htmlFor="newPassword" className="text-gray-400">New Password</Label>
+                <Label htmlFor="newPassword" className="text-gray-400 pb-2">New Password</Label>
                 <Input
                   type="password"
                   id="newPassword"
@@ -135,7 +135,7 @@ export const ForgotPassword = () => {
             </>
           )}
 
-          <p className="text-center text-xs text-gray-400 mt-6">© 2025</p>
+          {/* <p className="text-center text-xs text-gray-400 mt-6">© 2025</p> */}
         </div>
 
         {/* Right Side - Image */}

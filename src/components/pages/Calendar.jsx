@@ -11,6 +11,7 @@ import { Button } from '../ui/button';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../css/BigCalendarOverride.css'; 
+import { Card } from '../ui/card';
 
 const locales = {
   'en-US': enUS,
@@ -54,7 +55,8 @@ export const Calendar = () => {
       </div>
 
       {/* Calendar */}
-      <BigCalendar
+      <Card className="p-4">
+        <BigCalendar
         localizer={localizer}
         events={myEvents}
         startAccessor="start"
@@ -66,6 +68,7 @@ export const Calendar = () => {
         onView={setView}
         onNavigate={(newDate) => setDate(newDate)}
       />
+      </Card>
     </div>
   );
 };
