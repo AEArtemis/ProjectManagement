@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 export const Tasks = () => {
   const [showModal, setShowModal] = useState(false);
   const [type, setType] = useState("New");
-
+  const [statusFilter, setStatusFilter] = useState("all");
   // search
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -37,7 +37,8 @@ export const Tasks = () => {
       date: "06/06/2025",
       comments: 5,
       attachments: 5,
-      color: "bg-green-500"
+      color: "bg-green-500",
+      status: "Completed"
     },
     {
       id: "#PLN12039984",
@@ -47,7 +48,8 @@ export const Tasks = () => {
       date: "06/06/2025",
       comments: 5,
       attachments: 5,
-      color: "bg-red-500"
+      color: "bg-red-500",
+      status: "In Progress"
     },
     {
       id: "#PLN12043924",
@@ -57,16 +59,24 @@ export const Tasks = () => {
       date: "06/06/2025",
       comments: 5,
       attachments: 5,
-      color: "bg-orange-500"
+      color: "bg-orange-500",
+      status: "Completed"
     }
   ];
 
-  const filteredTasks = allTasks.filter(
-    (task) =>
+  const filteredTasks = allTasks.filter((task) => {
+    const matchesSearch =
       task.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      task.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+      task.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "all" ||
+      (statusFilter === "completed" && task.status.toLowerCase() === "completed") ||
+      (statusFilter === "in-progress" && task.status.toLowerCase() === "in progress");
+
+    return matchesSearch && matchesStatus;
+  });
 
   
   return (
@@ -104,7 +114,7 @@ export const Tasks = () => {
             </Card> */}
             <div className="flex items-center gap-x-2 pb-2">
               {/* Filter Dropdown */}
-              <Select defaultValue="all">
+              <Select value={statusFilter} onValueChange={(val) => setStatusFilter(val)}>
                 <SelectTrigger className="w-[130px]">
                   <SelectValue placeholder="Filter" />
                 </SelectTrigger>
@@ -135,7 +145,7 @@ export const Tasks = () => {
                         <div className="flex items-start justify-between">
                           <div>
                             <span className="text-md font-bold bg-blue-100 px-2 py-1 rounded text-muted-foreground inline-block max-w-[220px] truncate overflow-hidden whitespace-nowrap">
-                              {task.id}
+                              {task.id} 
                             </span>
                           </div>
                           <div className="flex flex-col items-center">

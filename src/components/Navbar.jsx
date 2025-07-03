@@ -15,7 +15,9 @@ import {
   Tickets,
   User,
   Building,
-  Building2
+  Building2,
+  ArrowBigRightDash,
+  ArrowBigLeftDash
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -77,18 +79,18 @@ const Navbar = () => {
     document.title = titles[location.pathname] || "Planora";
   }, [location.pathname]);
 
-  const iconSize = "w-6 h-6";
+  const iconSize = "w-5 h-5";
   const iconHoverClass = "transition-transform duration-200 group-hover:scale-110";
 
   const linkClasses = (path) =>
     `flex items-center ${
       collapsed && !isMobile ? "justify-center space-x-0" : "justify-start space-x-2"
-    } hover:bg-[#0C0A09] p-2 rounded transition-all ${
+    } hover:bg-[#0C0A09] p-2 m-1 rounded-md transition-all ${
       location.pathname === path ? "bg-[#0C0A09]" : ""
     }`;
 
   const NavItem = ({ to, icon: Icon, label }) => (
-    <Link to={to} className="relative group" onClick={() => isMobile && setMobileOpen(false)}>
+    <Link to={to} className="relative group text-sm" onClick={() => isMobile && setMobileOpen(false)}>
       <div className={linkClasses(to)}>
         <Icon className={`${iconSize} ${iconHoverClass}`} />
         {!((collapsed && !isMobile)) && <span>{label}</span>}
@@ -125,7 +127,7 @@ const Navbar = () => {
         </div>
 
         {!collapsed && (
-          <span className="text-sm font-semibold mb-1 pb-3 pl-1 pt-1 opacity-60 text-left block w-full">Menu</span>
+          <span className="text-sm font-semibold mb-1 pb-1 pl-1 pt-1 opacity-60 text-left block w-full">Menu</span>
         )}
         <NavItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
         <NavItem to="/tasks" icon={ClipboardList} label="Tasks" />
@@ -137,7 +139,7 @@ const Navbar = () => {
 
 
         {!collapsed && (
-          <span className="text-sm font-semibold mb-1 pb-3 pl-1 pt-4 opacity-60 text-left block w-full">General</span>
+          <span className="text-sm font-semibold mb-1 pb-1 pl-1 pt-4 opacity-60 text-left block w-full">General</span>
         )}
         <NavItem to="/profile" icon={User} label="Profile" />
         <NavItem to="/help" icon={LifeBuoy} label="Help" />
@@ -146,12 +148,12 @@ const Navbar = () => {
 
       <button
         onClick={handleLogout}
-        className="flex items-center space-x-2 hover:bg-[#0C0A09] p-2 rounded transition-all mt-6 relative group cursor-pointer"
+        className="text-sm flex items-center space-x-2 hover:bg-[#0C0A09] p-2 rounded-md transition-all mt-6 relative group cursor-pointer"
       >
         <LogOut className={`${iconSize} ${iconHoverClass}`} />
         {!((collapsed && !isMobile)) && <span>Logout</span>}
         {(collapsed && !isMobile) && (
-          <span className="absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+          <span className="text-sm absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-black text-white rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
             Logout
           </span>
         )}
@@ -175,7 +177,13 @@ const Navbar = () => {
               className="mr-2 hover:bg-muted p-0 rounded-md transition-colors duration-200 cursor-pointer"
               aria-label="Toggle sidebar collapse"
             >
-              <Menu className={`${iconSize} ${iconHoverClass}`} />
+              {collapsed && (
+                <ArrowBigRightDash className={`w-6 h-6 ${iconHoverClass}`} />
+              )}
+
+              {!collapsed && (
+                <ArrowBigLeftDash className={`w-6 h-6 ${iconHoverClass}`} />
+              )}
             </button>
           )}
           {isMobile && !mobileOpen && (
@@ -183,8 +191,9 @@ const Navbar = () => {
               onClick={() => setMobileOpen(true)}
               className="fixed top-4 left-7 z-50 md:hidden p-1 bg-muted text-foreground rounded-md hover:bg-muted-foreground/10 transition-colors duration-300"
               aria-label="Open sidebar"
+              variant="ghost"
             >
-              <Menu className={iconSize} />
+              <ArrowBigRightDash className={iconSize} />
             </button>
           )}
         </div>
